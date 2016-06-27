@@ -1,0 +1,52 @@
+<br>
+<div class="alert alert-success">
+  <button class="close" data-dismiss="alert">x</button>
+  <h4>提示：</h4>
+  <p>1.项目成员，只把申请书中教师身份的参与人员填写的下方（用于查重），学生身份的参与人不用填写</p>
+  <p>2.项目成员，不包括项目负责人，如有添加请删除</p>
+</div>
+
+<table class="well table" id="project_member_table">
+    <thead>
+        <tr>
+            <th><strong>姓名</strong></th>
+            <th><strong>出生年份</strong></th>
+            <th><strong>电话</strong></th>
+            <th><strong>邮箱</strong></th>
+            <th><strong>职称</strong></th>
+            <th><strong>行政职务</strong></th>
+            <th><strong>身份证</strong></th>
+
+            {%if is_submited%} <th><strong>修改</strong></th> {%endif%}
+            {%if is_submited%} <th><strong>删除</strong></th>{%endif%}
+        </tr>
+    </thead>
+        {%for item in project_member_list%}
+        <tr mid="{{item.id}}">
+            <td>{{item.name}}</td>
+            <td>{{item.birth_year}}</td>
+            <td>{{item.tel}}</td>
+            <td>{{item.mail}}</td>
+
+
+            <td value= "{{item.professional_title.id}}">{{item.professional_title}}</td>
+
+
+            <td value = "{{item.executive_position.id }}">{{item.executive_position }}</td>
+
+            <td>{{item.card}}</td>
+            {%if is_submited%} 
+            <td><button class = "btn btn-success modifyProjectMember" data-toggle="modal"
+                data-target="#member_info_modal">修改</button> </td>
+            {%endif%}
+            {%if is_submited%} 
+            <td> <button class = "btn btn-danger deleteProjectMember">删除</button></td>
+            {%endif%}
+
+        </tr>
+        {%endfor%}
+
+    <tbody>
+
+    </tbody>
+</table>

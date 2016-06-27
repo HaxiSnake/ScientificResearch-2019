@@ -1,0 +1,32 @@
+<div class="container">
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav ">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            项目管理<b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu home_menu" role="menu">
+            <li><a href="/adminStaff">项目进度管理</a></li>
+            <li><a href="/adminStaff/infoExport">项目信息表</a></li>
+            <li><a href="/adminStaff/infoModify">教师信息修改</a></li>
+            <li><a href="/adminStaff/createProject">创建项目信息</a></li>
+          </ul>
+        </li>
+        <li><a href="/adminStaff/dispatch">帐号激活</a></li>
+        <li><a href="/adminStaff/alloc_manage">分配管理</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            新闻图片管理<b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu home_menu" role="menu">
+            <li><a href="/adminStaff/homepic_import">首页图片设置</a></li>
+            <li><a href="/adminStaff/news_release">发布新闻</a></li>
+            <li><a href="/adminStaff/noticeMessageSetting">邮件提醒</a></li>
+          </ul>
+        </li>
+      </ul>
+        {% include "widgets/userinfo_nav.html"%}
+    </div>
+  </nav>
+</div>

@@ -1,0 +1,139 @@
+<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}style/common/member_change.css" >
+
+<form arg="{{is_first}}" class="well form" id="member_change_form" method="POST" action="/teacher/setting">
+    <div class="alert alert-success">
+        <button class="close" data-dismiss="alert">x</button>
+        <h4>提示：</h4>
+        <p>1. 首次登录后请立刻填写教师注册信息</p>
+        <p>2. 姓名，身份证号一经提交，即无法在本页面修改，如需修改请联系管理员</p>
+    </div>
+
+    {% if message == "ok" %}
+        <div class="alert alert-success">
+        <button class="close" data-dismiss="alert">x</button>
+        <h4>保存成功</h4>
+        </div>
+    {% endif %}
+    {% csrf_token %}
+
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                {{form.name}}
+            </div> 
+            <div id="alert-bar" style="color:red">
+                {{ form.name.errors }}
+            </div>
+
+        </div>
+        <div class="col-lg-3">
+            <div class="input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                {{form.card}}
+            </div> 
+            <div id="alert-bar" style="color:red">
+                {{ form.card.errors }}
+            </div>
+
+        </div>
+		<div class="col-lg-3">
+            <div class="input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                {{form.birth}}
+            </div> 
+            <div id="alert-bar" style="color:red">
+                {{ form.birth.errors }}
+            </div>
+
+        </div>
+        <div class="col-lg-3">
+            <div class="input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                {{ form.base_name }}
+            </div>
+            <div id="alert-bar" style="color:red">
+                {{ form.base_name.errors }}
+            </div>
+
+        </div>
+    </div>
+	<div class="row">
+		<div class="col-lg-3">
+			<div class="input-group">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button">性别</button>
+				</span>
+				{{ form.sex }}
+			</div>
+            <div id="alert-bar" style="color:red">
+                {{ form.sex.errors }}
+            </div>
+
+		</div>
+		<div class="col-lg-3">
+			<div class="input-group">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button">支持对象</button>
+				</span>
+				{{ form.target_type }}
+			</div>
+            <div id="alert-bar" style="color:red">
+                {{ form.target_type.errors }}
+            </div>
+
+		</div>
+		<div class="col-lg-3">
+			<div class="input-group">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button">学位</button>
+				</span>
+				{{ form.degree }}
+			</div>
+            <div id="alert-bar" style="color:red">
+                {{ form.degree.errors }}
+            </div>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-3">
+			<div class="input-group">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button">基地类型</button>
+				</span>
+				{{ form.base_type }}
+			</div>
+            <div id="alert-bar" style="color:red">
+                {{ form.base_type.errors }}
+            </div>
+
+		</div>
+		<div class="col-lg-3">
+			<div class="input-group">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button">职称</button>
+				</span>
+				{{ form.title }}
+			</div>
+            <div id="alert-bar" style="color:red">
+                {{ form.title.errors }}
+            </div>
+
+		</div>
+		<div class="col-lg-3">
+			<div class="input-group">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button">行政职务</button>
+				</span>
+				{{ form.position }}
+			</div>
+            <div id="alert-bar" style="color:red">
+                {{ form.position.errors }}
+            </div>
+
+		</div>
+	</div>
+		<button type="submit" id="setting_submit" class="btn btn-primary">提交</button>
+</form>
+<script type="text/javascript" src="{{STATIC_URL}}js/teacher/setting_control.js"></script>

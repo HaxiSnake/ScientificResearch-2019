@@ -1,0 +1,28 @@
+<table class="well table" id="ewscontent">
+  <thead>
+    <tr>
+      <td><strong>新闻标题</strong></td>
+      <td><strong>新闻类型</strong></td>
+      <td><strong>时间</strong></td>
+      <td><strong>操作</strong></td>
+    </tr>
+  </thead>
+  <tbody>
+    {%for news in item_list%}
+    <tr id="{{news.id}}">
+      <td>{{news.news_title|truncatechars:25}}</td>
+      <td>{{news.news_category}}</td>
+      <td>{{news.news_date|date:"Y-m-d"}}</td>
+      <td>
+        <button class="btn btn-danger" rel="news_delete" uid="{{news.id}}">
+          <i class="icon-trash icon-white"></i>
+          <span>删除</span>
+        </button>
+      </td>
+    </tr>
+    {%endfor%}
+  </tbody>
+</table>
+<div id="news_release_paginator">
+  {%include "widgets/paginator.html"%}
+</div>

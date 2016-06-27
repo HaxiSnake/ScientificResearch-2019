@@ -1,0 +1,23 @@
+
+          <div class="form-group">
+            <label for="review_select">审核结果</label>
+            {{ProjectJudge_form.judgeresult}}
+            <br/>
+            <div class="skip_choice" style="display:none">
+              {{ProjectJudge_form.skip_judge}}
+
+            </div>
+          </div>
+          <div id="not_pass_article">
+            <label>不通过方面</label>
+
+            {{ProjectJudge_form.noPassReason}}
+
+            <div class="form-group" name="not_pass_reason">
+              <label class="add-on" for="review_reason">不通过原因</label>
+              {{ProjectJudge_form.reason}}
+            </div>
+
+          </div>
+          
+

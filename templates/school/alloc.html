@@ -1,0 +1,106 @@
+{% extends "school/base/_content.html" %}
+{% block inner_content %}
+<div class="well form-inline">
+    <b>
+  <div class="alert alert-success" style="margin-top:20px">
+    <a class="close" data-dismiss="alert">x</a>
+    <h4 class="alert-heading">系统提示！</h4>
+    <p>
+        {% if page_info == "alloc" %}
+        <p>1. 本界面是初审专家分配界面。</p>
+        {% else %}
+        <p>1. 本界面是终审专家分配界面。</p>
+        {% endif %}
+        <p>2. 指派专家时，请分别筛选出对应类别的项目和专家后，点击选择对应项目集合和专家集合，然后点击“批量指派”按钮。分配时，可参考专家“已分配数量”内容。</p>
+	    <p>3. 取消分配专家时，选择对应项目集合，然后点击“批量取消”按钮。</p>
+        <p>4. 已指派项目可以在原有分配专家数目基础上追加，指派过程中若发现有项目被追加给了已分配的专家，则该条追加将被忽略。</p>
+    </p>
+  </div>
+    <div id="project_filter_form">
+	{% csrf_token %}
+    {{ form.specials }}
+    {{ form.colleges}}
+  <button class="btn btn-primary" id="project_filter_button">筛选项目</button>
+  </div><!--end category form -->
+  
+<hr/>
+  <div class="tab-content">
+  <div class="tab-pane fade active in" id="review-page">
+    <ul class="nav nav-pills">
+      <li class="active">
+        <a href="#unalloced-tab-section" data-toggle="tab" id="unalloc_tab">未指派<span class="badge"></span></a>
+      </li>
+      <li>
+        <a href="#alloced-tab-section" data-toggle="tab" id="alloc_tab">已指派<span class="badge"></span></a>
+      </li>
+
+    </ul><!--end ul title-->
+
+    <div class="tab-content">
+      <div class="tab-pane fade active in" id="unalloced-tab-section">
+            <div id="unalloced-section">
+			{% include "school/widgets/unalloc_project_table.html" %}
+            </div>
+            <a data-toggle="modal" id="button_operator_alloc"><button class="btn btn-primary">批量指派</button></a>
+      </div><!--end content section-->
+      <div class="tab-pane fade " id="alloced-tab-section">
+            <div id="alloced-section">
+            {% include "school/widgets/alloc_project_table.html" %}
+            </div>
+            <a data-toggle="modal" id="button_operator_cancel"><button class="btn btn-primary">批量取消</button></a>
+            <a data-toggle="modal" id="button_operator_append"><button class="btn btn-primary">批量追加</button></a>
+      </div>
+    </div><!--end tab content-->
+  </div><!--end tab pane-->
+  <hr/>
+  <div class="row">
+   <div id="id_div_expert" class="col-md-6">
+	<div id="expert_filter_form">
+		{% csrf_token %}
+        {{ form.colleges}}
+  	    <button class="btn btn-primary" id="expert_filter_button">筛选评委</button>
+	</div>
+    <div id="expert_list_div">
+		{% include "school/widgets/alloc_expert_table.html" %}
+    </div>
+   </div>
+   
+
+   <div class="col-md-6">
+    <div id="expert_addon_form">
+		{% csrf_token %}
+        <input class="form-control" type="text" placeholder="姓名" id="expert_search_input"></input>
+  	    <button class="btn btn-primary" id="expert_add_button">直接添加</button>
+	</div>
+
+    <table class="table table-bordered" id="expert_box">
+      <thead>
+        <th>专家姓名</th>
+        <th>所属学院</th>
+        <th>操作</th>
+      </thead>  
+      <tbody>
+      </tbody>
+    </table>
+    <button class="btn btn-primary btn-clear">清空</button>
+   </div>
+  </div>
+ 
+	<div class="modal fade" id="query_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+		  <div class="modal-content">
+		    <div class="modal-header">
+		      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		      <h3 class="modal-title">已指派评委列表</h3>
+		    </div>
+		    <div class="modal-body">
+            <div class="modal-footer">
+		      <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+		    </div>
+		  </div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+</div>
+<script type="text/javascript" src="{{STATIC_URL}}js/school/alloc.js"></script>
+{% endblock %}

@@ -1,0 +1,167 @@
+<link rel="stylesheet" href="{{ STATIC_URL }}style/teacher/fileupload.css" type="text/css" media="screen" />
+<!--File list view-->
+<div class="page-header">
+    <h3>历史文件列表</h3>
+</div>
+<table class="table table-bordered " >      
+    <thead>
+        <tr>
+            <td scope="col">名称</td>
+            <td scope="col">类型</td>
+            <td scope="col">大小</td>
+            <td scope="col">上传时间</td>
+
+            
+            <td scope="col">下载</td>
+            {%if not userauth.is_experter%}
+                <td scope= "col"> 删除 </td>
+            {%endif%}
+        </tr>
+    </thead>
+    <tbody>
+        {%for item in files%}
+        <tr class = "success">
+            <td>{{item.name}}</td>
+            <td>{{item.file_type}}</td>
+            <td>{{item.file_size}}</td>
+            <td>{{item.upload_time|date:"Y-m-d"}}</td>
+            <td><span><a href="{{item.file_obj.url}}" class='btn btn-primary'>下载</a></span> </td>
+
+            {%if not userauth.is_experter%}
+            <td>
+                {%if item.file_type == "其他" or item.file_type == "基本科研业务费专项项目进展报告" %} 
+                    <form method="POST"  action="">
+                        {% csrf_token %}
+                        <input type= "hidden" name= "is_delete_file" value = "1">
+                        <input type= "hidden" name= "fid" value = "{{item.id}}">
+                        <button type="submit" class="btn btn-success"> 删除</button>
+                    </form>
+                {%endif%}
+            
+            </td>
+            {%endif%}
+
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+
+
+{%if not userauth.is_experter%}
+
+
+
+
+
+<br/>
+
+
+<div class="page-header">
+    <h3>文件上传操作</h3>
+
+</div>
+<!--File upload operator-->
+{%if error%}
+<div class="alert alert-success" >
+    <button type="button" class="close" data-dismiss="alert">x</button>
+    <h3><strong>上传文件名不符和要求!</strong></h3>
+
+</div>
+{%endif%}
+
+<div class="row" > 
+    <div class="col-lg-4">
+        <form method="POST"  action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <span class="label label-info col-lg-12"><h4>基本科研业务费专项项目申请书上传</h4></span>
+            <p class="tip">上传的文件请命名为<strong>“基本科研业务费专项项目申请书_姓名”</strong></p>
+
+            <!-- 0 for SUBMIT_STATUS_APPLICATION-->
+            {%if is_can_submited.7%}
+            <input type="file"  class="file"  size="1" hidefocus enctype="multipart/form-data" name="file_application" accept="doc,docx" >
+            <button type= "submit" class="btn btn-success"> <span class="glyphicon glyphicon-upload"></span> <span>上传</span></button>
+            {%endif%}
+        </form>
+    </div>
+
+    <div class="col-lg-4">
+            <form method="POST"  action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                <span class="label label-info col-lg-12"><h4>基本科研业务费专项项目任务书</h4></span>
+                <p class="tip">上传的文件请命名为<strong>“基本科研业务费专项项目任务书_姓名”</strong></p>
+
+
+                <!-- 1 for SUBMIT_STATUS_TASK-->
+                {%if is_can_submited.8%}
+                <input type="file"  class="file"  size="1" hidefocus enctype="multipart/form-data" name="file_task" accept="doc,docx" >
+                <button type="submit" class="btn btn-success"> <span class="glyphicon glyphicon-upload"></span> <span>上传</span></button>
+                {%endif%}
+            </form>
+    </div>
+    <div class="col-lg-4">
+        <form method="POST"  action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <span class="label label-info col-lg-12"><h4>基本科研业务费专项项目进展报告上传</h4></span>
+            <p class="tip">上传的文件请命名为<strong>“基本科研业务费专项项目进展报告_姓名”</strong></p>
+
+            <!-- 2 for SUBMIT_STATUS_PROGRESS-->
+            {%if is_can_submited.9%}
+            <input type="file"  class="file"  size="1" hidefocus enctype="multipart/form-data" name="file_interimchecklist" accept="doc,docx" >
+
+            <button type="submit" class="btn btn-success"> <span class="glyphicon glyphicon-upload"></span> <span>上传</span></button>
+            {%endif%}
+
+        </form>
+    </div>
+</div>
+<div class="row" > 
+    <div class="col-lg-4">
+        <form method="POST"  action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <span class="label label-info col-lg-12"><h4>基本科研业务费专项项目结题报告上传</h4></span>
+            <p class="tip">上传的文件请命名为<strong>“基本科研业务费专项项目结题报告_姓名”</strong></p>
+
+
+            <!-- 3 for SUBMIT_STATUS_FINAL-->
+            {%if is_can_submited.10%}
+            <input type="file"  class="file"  size="1" hidefocus enctype="multipart/form-data" name="file_summary" accept="doc,docx" >
+            <button type="submit" class="btn btn-success"> <span class="glyphicon glyphicon-upload"></span> <span>上传</span></button>
+            {%endif%}
+
+        </form>
+    </div>
+    
+    <div class="col-lg-4">
+        <form method="POST"  action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <span class="label label-info col-lg-12"><h4>结题报告成果附件文件上传</h4></span>
+            <p class="tip">上传的文件不能命名为<strong>其他四个入口的名称</strong></p>
+
+            <!-- 4 for SUBMIT_STATUS_REVIEW-->
+            <!-- {%if is_can_submited.10%} -->
+            <input type="file"  class="file"  size="1" hidefocus enctype="multipart/form-data" name="file_other" accept="doc,docx" >
+            <button type="submit" class="btn btn-success"> <span class="glyphicon glyphicon-upload"></span> <span>上传</span></button>
+
+            <!-- {%endif%} -->
+        </form>
+    </div>
+
+</div>
+<!--Files Upload Tips-->
+
+<div class="alert alert-success" id="filesupload-tips" >
+    <button type="button" class="close" data-dismiss="alert">x</button>
+    <h3><strong>文件上传提示!</strong></h3>
+
+    <ul>
+        <li>上传的最大文件大小为 <strong> 50 MB</strong> </li>
+        <li>只有文件格式为 <strong> (DOC, DOCX) </strong>的文件才被允许上传.</li>
+        <!-- <li>添加文件后请<strong>不要刷新页面</strong>，否则不能进行删除文件操作。</li> -->
+    </ul>
+</div>
+{%endif%}
+
+
+<script type='text/javascript' src= "{{STATIC_URL}}js/common/file_upload.js"> </script>
+
+

@@ -1,0 +1,29 @@
+{%include "widgets/finalreport/financial_auditing.html"%}
+<form class="well"id="finalForm" pid={{pid}}>
+      <div class="form-group">
+          <label for="review_select">评审结果</label>
+          <select id="review_select" class="form-control" name="judgeresult" >
+              <option value="-1" selected="selected">请评审</option>
+              <option value="1">通过</option>
+              <option value="0">不通过</option>
+          </select>
+      </div>
+      <div class="form-group" id="not_pass_reason">
+          <label class="add-on" for="review_reason">审核意见</label>
+          <textarea class="form-control" id="review_reason" rows="10" name="reason"></textarea>
+      </div>
+      <div>
+      <label>审核人：</label><input tpye="text" id="finance_staff_form" name="finance_staff"></input>
+      <label>审核时间：</label><input tpye="text" id="finance_checktime_form" name="finance_checktime"></input>
+      </div>
+      <center>
+        <button class="btn btn-large btn-block btn-success" style="width:40%;" type="button" id="finaljudge">信息填写无误后，提交报告</button>
+      </center>
+</form>
+<script type='text/javascript' src="{{STATIC_URL}}js/edittable/mindmup-editabletable.js"></script>
+<script type='text/javascript' src="{{STATIC_URL}}js/edittable/numeric-input-example.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/finance.js"></script>
+<script>
+  var myDate = new Date();
+  $("#finance_checktime_form").val(myDate.getFullYear()+"-"+(myDate.getMonth()+1)+'-'+myDate.getDate());
+</script>

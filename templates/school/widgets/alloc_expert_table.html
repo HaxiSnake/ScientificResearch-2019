@@ -1,0 +1,24 @@
+<table class="table table-bordered" id="table_expert_list">
+  <thead>
+    <tr>
+      <th>专家姓名</th>
+      <th>所属学院</th>
+      <th>已分配数量</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for expert in item3_list %}
+    <tr args="{{ expert.userid }}">
+      <td>{{ expert.userid.first_name }}</td>
+      <td>{{ expert.college }}</td>
+      <td>{{ expert.alloc_num }}</td>
+      <td><button class="btn btn-primary btn-addon">添加</button></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<div id="alloc_expert_paginator">
+  {% include "widgets/paginator3.html" %}
+</div>

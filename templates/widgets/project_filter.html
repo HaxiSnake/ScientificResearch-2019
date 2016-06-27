@@ -1,0 +1,12 @@
+<div class="well form">
+  <h3> 
+    项目列表
+</h3>
+
+  <form id="schedule_form" class= "form-inline" role="form" >
+    {% csrf_token %}
+    {% include "widgets/searchform.html" %}
+
+  </form>
+
+</div>

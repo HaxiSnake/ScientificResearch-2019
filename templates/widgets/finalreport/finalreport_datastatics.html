@@ -1,0 +1,52 @@
+<div class="datastatics">
+    <div class="modal  fade in" id="datastatics_profile_info">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="modal_title">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form" id="datastatics_change_form" method="POST" action="">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                    {{projdatastaticsform.staticstype}}
+                                </div> 
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                    {{projdatastaticsform.staticsdatatype}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                    {{projdatastaticsform.statics_num}}
+                                </div> 
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="cancel_change">关闭</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" id="datastatics_save_change">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {%if not userauth.is_experter%}
+        {% if is_submited %}
+    	<button class="btn btn-success pull-right" style="margin-right:20px;"pid={{pid}} id="finalreport_finish">提交</button>
+        <button class="btn btn-primary pull-right" style="margin-right:25px;" id="add_new_datastatics" >添加新数据</button>
+        {% endif %}
+
+    {%endif%}
+    <br>
+    {% include 'widgets/finalreport/final_datastatics_table.html' %}
+<script type='text/javascript' src="{{STATIC_URL}}js/finalreport/datastatics_change.js"></script>
+</div>

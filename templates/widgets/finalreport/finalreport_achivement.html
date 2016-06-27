@@ -1,0 +1,74 @@
+<div class="datastatics">
+    <div class="modal  fade in" id="achivement_profile_info">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="modal_title">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form" id="achivement_change_form" method="POST" action="">
+                        <div class="row">
+
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                    {{projachivementform.achivementtitle}}
+                                </div> 
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt"></span></span>
+                                    {{projachivementform.mainmember}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span></span>
+                                    {{projachivementform.introduction}}
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                                    {{projachivementform.remarks}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                    {{projachivementform.achivementtype}}
+                                </div> 
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="cancel_change">关闭</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="achivement_save_change">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    {% if is_submited  %}
+    <a class="btn btn-primary pull-right" style="margin-right:20px;" id="achivement_next"  href="#datastatics" data-toggle="tab">下一步</a>
+
+        {%if not userauth.is_experter%}
+            <button class="btn btn-primary pull-right"  id="add_new_achivement" style="margin-right:20px;">添加新成果</button>
+        {%endif%}
+    {% endif %}
+
+
+
+
+    <br>
+    {% include 'widgets/finalreport/final_achivement_table.html' %}
+<script type='text/javascript' src="{{STATIC_URL}}js/finalreport/achivement_change.js"></script>
+</div>

@@ -1,0 +1,22 @@
+{% extends "school/base/_content.html" %}
+{%block inner_content%}
+  <ul class="nav nav-pills" id="myTab">
+    {%for item,expert_review_form, expert_final_review_form in spec_list %}
+      <li class= {%ifequal forloop.counter 1%}"active"{%endifequal%}><a href="#{{item.id}}" data-toggle="tab">
+        {{item.name}}</a></li>
+    {%endfor%}
+  </ul>
+  <div class="tab-content" id="project_control_div">
+    {%for item,expert_review_form, expert_final_review_form in spec_list %}
+    <div class="tab-pane   {%ifequal forloop.counter 1%} active {%endifequal%}" id='{{item.id}}'>
+      {%include "school/widgets/control.html"%}
+    </div>
+    {%endfor%}
+  </div>
+  <script>
+    $(function () {
+      $('#myTab a:first').tab('show')
+    })
+  </script>
+<script type='text/javascript' src="{{STATIC_URL}}js/common/project_control.js"></script>
+ {%endblock%}
