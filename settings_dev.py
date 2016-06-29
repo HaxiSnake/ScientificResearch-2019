@@ -6,6 +6,8 @@
 """
 from settings import *
 
+print 'xxxxxxx'
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
