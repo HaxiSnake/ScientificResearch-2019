@@ -2,9 +2,6 @@
 from django.contrib.auth.models import User
 from const.models import UserIdentity
 from registration.models import RegistrationManager
-import sys
-reload(sys)
-sys.setdefaultencoding("UTF-8")
 def sendemail(request,username,password,email,identity,person_firstname,send_email=True, **kwargs):
     #判断用户名是否存在存在直接返回
     if not AuthUserExist(username, identity,person_firstname):

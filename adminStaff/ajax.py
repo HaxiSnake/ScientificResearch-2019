@@ -469,8 +469,8 @@ def CreateProject(request, form):
 def getProjectStatus(request, project_id):
     try:
         project = ProjectSingle.objects.get(project_id = project_id)
+        print "divde"*100
         print project.project_status.status
-        print 1*100
         html = render_to_string("widgets/project_judge_form.html",{"ProjectJudge_form":ProjectJudgeForm(status = project.project_status.status)})
     
         return simplejson.dumps({'status':'1',"html":html})

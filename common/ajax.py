@@ -271,7 +271,7 @@ def LookThroughResult(request,judgeid,userrole,userstatus,page,page2,search,look
         print project.project_status
         print "a"*100
         status_confirm(request,project)#request,pprint project.statusroject
-        print "b"*100
+        print "zxc"*100
         print project.project_status
 
         if skip_judge:
@@ -324,7 +324,7 @@ def LookThroughResult(request,judgeid,userrole,userstatus,page,page2,search,look
             comment+=item+u""
         for item in form.getlist("final"):
             comment+=item+u"、"
-        comment+=u",原因"+form["reason"]
+        comment+=u",请根据项目下一步操作进行相应修改"+form["reason"]
         loginfo(comment)
         project.comment=comment
         project.save()

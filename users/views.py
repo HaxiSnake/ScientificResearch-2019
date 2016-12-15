@@ -45,6 +45,7 @@ def base_profile_view(request, authority=None):
         return None
     return None
 def get_redirect_urls(request):
+    print "==="*1000
     if check_auth(user=request.user, authority=SCHOOL_USER):
         return "/school"
     elif check_auth(user=request.user, authority=COLLEGE_USER):

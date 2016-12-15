@@ -278,20 +278,26 @@ def set_status(project,status):
 
 def status_confirm(request,project):
     identity = request.session.get("auth_role","")
-    loginfo('$'*50)
+    loginfo('status_confirm'*50)
     status_dict =  PROGRESS_REVIEW_DICT[project.project_status.status]
-
     # if project.project_special.review_status:
     #     status_dict =  PROGRESS_REVIEW_DICT[project.project_status.status]
     # else:
     #     status_dict =  PROGRESS_NOT_REVIEW_DICT[project.project_status.status]
 
     loginfo(NEXT_PROGRESS_PERMISSION_DICT[identity])
+    print "cat"*100
+    print NEXT_PROGRESS_PERMISSION_DICT[identity]
+    print identity
+    print "dog"*100
+    print status_dict[NEXT_STATUS]
     if status_dict[NEXT_STATUS] in NEXT_PROGRESS_PERMISSION_DICT[identity]:
         project.submit_date = time.strftime('%Y-%m-%d',time.localtime(time.time()))
+        print "insert"*100
         set_status(project,status_dict[NEXT_STATUS])
         if PROGRESS_FILE_DICT.get(project.project_status.status,None) !=None and getattr(project,PROGRESS_FILE_DICT[project.project_status.status]):
             status_confirm(request,project)
+    print "heheheh"*100
     print project.project_status.status
     print PROJECT_STATUS_APPLICATION_COMMIT_OVER
     if project.project_special.name==u"引进人才科研专题" and project.project_status.status==PROJECT_STATUS_APPLICATION_COMMIT_OVER:

@@ -167,7 +167,6 @@ EMAIL_PORT = '25'
 EMAIL_HOST_USER = 'kyywf@dlut.edu.cn'
 f = open('password.tmp')
 EMAIL_HOST_PASSWORD = f.read().strip()
-print EMAIL_HOST_PASSWORD
 f.close()
 DEFAULT_FROM_EMAIL = 'kyywf@dlut.edu.cn'
 EMAIL_USE_TLS = False

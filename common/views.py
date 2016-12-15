@@ -353,7 +353,6 @@ def get_search_data(request,schedule_form):
     if schedule_form.is_valid():
         application_status=schedule_form.cleaned_data['application_status']
         status=schedule_form.cleaned_data['status']
-        print status
         application_year= schedule_form.cleaned_data['application_year']
         approval_year=schedule_form.cleaned_data['approval_year']
         special=schedule_form.cleaned_data['special']

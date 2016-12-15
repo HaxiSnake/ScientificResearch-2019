@@ -26,14 +26,16 @@ def active(request, activation_key,
     """
     Active the user account from an activation key.
     """
+    print "active"*100
+
     activation_key = activation_key.lower()
     account = RegistrationProfile.objects.activate_user(activation_key)
+    print "count"*100
     if extra_context is None:
         extra_context = {}
     context = RequestContext(request)
     for key, value in extra_context.items():
         context[key] = callable(value) and value() or value
-
     return render_to_response(template_name,
                               {'account': account,
                                'expiration_days': settings.ACCOUNT_ACTIVATION_DAYS

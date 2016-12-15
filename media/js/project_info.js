@@ -130,11 +130,12 @@ $('#review_modal').on('show.bs.modal', function (e) {
 // });
 
 $(document).on("click","#id_judge",function(){
-    //alert($("#schedule_form").serialize(true));
+
     var project_id =$(this).closest("tr").attr("iid");
     judgeid=$(this).closest("tr").attr("iid");
     projectstatus=$(this).closest("tr").attr("status");
     $("#id_allstatus").val(projectstatus);
+
    
     Dajaxice.adminStaff.getProjectStatus(getProjectStatusCallBack,{'project_id':project_id});
 });
