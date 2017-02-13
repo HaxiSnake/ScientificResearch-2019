@@ -269,6 +269,7 @@ def LookThroughResult(request,judgeid,userrole,userstatus,page,page2,search,look
         project.comment=''
         project.save()
         print project.project_status
+        print project.project_status.status
         print "a"*100
         status_confirm(request,project)#request,pprint project.statusroject
         print "zxc"*100
