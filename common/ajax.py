@@ -459,15 +459,22 @@ def checkCanAddMember(request,icard):
     if check_auth(request.user,TEACHER_USER):
         if TeacherProfile.objects.get(userid=request.user).teacherinfosetting.card == icard:
             return False
+            #检查是否把自己加入团队列表
     try:
         teacherInfo =TeacherInfoSetting.objects.get(card=icard)
         pro = ProjectSingle.objects.filter(Q(teacher=teacherInfo.teacher) & Q(project_status__status__lt =PROJECT_STATUS_OVER))
     except:
         pro = ProjectSingle.objects.none()
-    member = ProjectMember.objects.filter(card = icard)
-    if member.count() + pro.count()  <= 3:
+    member = ProjectMember.objects.filter(Q(card = icard)& Q(project__project_status__status__lt =PROJECT_STATUS_OVER))
+    if member.count() + pro.count()  <= 1:
         return True
     else:
+        print '--------' *100
+        print member[1].project
+        print '--------' *100
+        print '*' *100
+        print pro[0]
+        print '*' *100
         return False
 
 
