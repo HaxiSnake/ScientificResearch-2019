@@ -469,12 +469,6 @@ def checkCanAddMember(request,icard):
     if member.count() + pro.count()  < 3:
         return True
     else:
-        print '--------' *100
-        print member[1].project
-        print '--------' *100
-        print '*' *100
-        print pro[0]
-        print '*' *100
         return False
 
 
