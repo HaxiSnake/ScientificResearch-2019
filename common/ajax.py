@@ -466,7 +466,7 @@ def checkCanAddMember(request,icard):
     except:
         pro = ProjectSingle.objects.none()
     member = ProjectMember.objects.filter(Q(card = icard)& Q(project__project_status__status__lt =PROJECT_STATUS_OVER))
-    if member.count() + pro.count()  <= 1:
+    if member.count() + pro.count()  < 3:
         return True
     else:
         print '--------' *100
