@@ -325,7 +325,12 @@ def LookThroughResult(request,judgeid,userrole,userstatus,page,page2,search,look
             comment+=item+u""
         for item in form.getlist("final"):
             comment+=item+u"、"
-        comment+=u",请根据项目下一步操作进行相应修改"+form["reason"]
+        if form["reason"] == '':
+            comment+=u"请根据项目下一步操作进行相应修改。"+ u"    未给出评审意见"
+        else :
+            comment+=u"请根据项目下一步操作进行相应修改"+form["reason"]
+ 
+        
         loginfo(comment)
         project.comment=comment
         project.save()
