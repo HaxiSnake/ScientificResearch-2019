@@ -16,9 +16,10 @@
       {%if user.userid.is_active %}
       <td>
         <button class="btn btn-success">已经激活</button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#school-modal">
+        <button  type="button" class="btn_modify btn btn-primary" data-toggle="modal" data-target="#school-modal">
             修改信息
         </button>
+
       </td>
       {%else%}
       <td><button class="btn btn-warning">已发送，尚未激活</button> <button class="btn btn-danger">删除</button></td>
@@ -39,11 +40,30 @@
         <h4 class="modal-title" id="myModalLabel">修改专题管理员信息</h4>
       </div>
       <div class="modal-body">
-        ...
+               
+       <table class="well table">
+            <tr>
+              <td><strong>用户名</strong></td>
+              <td><input  class = "text_username"> </input></td>
+            </tr>
+            <tr>
+              <td><strong>负责人</strong></td>
+              <td><input class="text_name"> </input></td>
+            </tr>
+            <tr>
+              <td><strong>Email</strong></td>
+              <td><input class="text_email"> </input></td>
+            </tr>
+         
+
+        </table>
+
+
+
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary">保存</button>
+        <button type="button" id = "btn_close"class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary btn_save" >保存</button>
       </div>
     </div>
   </div>

@@ -18,7 +18,7 @@
       {%if user.userid.is_active %}
       <td>
         <button class="btn btn-success">已经激活</button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#expert-modal">
+        <button type="button" class="btn_modify_expert btn btn-primary" data-toggle="modal" data-target="#expert-modal">
             修改信息
         </button>
       </td>
@@ -42,11 +42,32 @@
         <h4 class="modal-title" id="myModalLabel">修改专家信息</h4>
       </div>
       <div class="modal-body">
-        ...
+        
+          <table class="well table">
+            <tr>
+              <td><strong>用户名</strong></td>
+              <td><input  class = "text_username_expert"> </input></td>
+            </tr>
+            <tr>
+              <td><strong>负责人</strong></td>
+              <td><input class="text_name_expert"> </input></td>
+            </tr>
+            <tr>
+              <td><strong>Email</strong></td>
+              <td><input class="text_email_expert"> </input></td>
+            </tr>
+            <tr>
+              <td><strong>学院</strong></td>
+              <td><input class="text_college_expert"> </input></td>
+            </tr>
+
+        </table>
+
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary">保存</button>
+        <button type="button" class="btn btn-primary btn_save_expert">保存</button>
       </div>
     </div>
   </div>

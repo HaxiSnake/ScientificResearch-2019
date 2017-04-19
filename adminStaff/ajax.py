@@ -476,3 +476,69 @@ def getProjectStatus(request, project_id):
         return simplejson.dumps({'status':'1',"html":html})
     except:
         return simplejson.dumps({'status':'0', "message": u"申请代码或项目编号有误"})
+
+
+@dajaxice_register
+def ModifyInfomation(request,origin,username,name,email):
+    try:
+        user = User.objects.get(username=origin)
+        user.username = username
+        user.first_name = name
+        user.email = email
+        user.save()
+        return simplejson.dumps({'status':'1'})
+    except Exception,e:
+        print e
+        return simplejson.dumps({'status':'0'})
+    
+
+@dajaxice_register
+def ModifyInfomationCollege(request,origin,username,name,email):
+    try:
+        user = User.objects.get(username=origin)
+        user.username = username
+        user.first_name = name
+        user.email = email
+        user.save()
+        return simplejson.dumps({'status':'1'})
+    except Exception,e:
+        print e
+        return simplejson.dumps({'status':'0'})
+
+@dajaxice_register
+def ModifyInformationExpert(request,origin,username,name,college,email):
+    try:
+        user = User.objects.get(username=origin)
+        user.username = username
+        user.first_name = name
+        user.email = email
+        user.save()
+        try:
+            teacher_college = ExpertProfile.objects.get(userid__id=user.id)
+            teacher_college.college = College.objects.get(name = college)
+            teacher_college.save()
+        except:
+            return simplejson.dumps({'status':'0'})
+        return simplejson.dumps({'status':'1'})
+    except Exception,e:
+        print e
+        return simplejson.dumps({'status':'0'})
+
+@dajaxice_register
+def ModifyInformationTeacher(request,origin,username,name,college,email):
+    try:
+        user = User.objects.get(username=origin)
+        user.username = username
+        user.first_name = name
+        user.email = email
+        user.save()
+        try:
+            teacher_college = TeacherProfile.objects.get(userid__id=user.id)
+            teacher_college.college = College.objects.get(name = college)
+            teacher_college.save()
+        except:
+            return simplejson.dumps({'status':'0'})
+        return simplejson.dumps({'status':'1'})
+    except Exception,e:
+        print e
+        return simplejson.dumps({'status':'0'})
