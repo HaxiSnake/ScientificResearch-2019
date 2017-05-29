@@ -5,109 +5,165 @@
       <strong style="margin-left:50px;">项目编号：</strong><input type="text" readonly="readonly"   id = "summary_project_code" value="{{pro.project_code}}" disabled></input>
     </div>
     -->
-<div role="tabpanel"  id = "print_body">
-
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#fundsummary" aria-controls="fundsummary" role="tab" data-toggle="tab">决算表</a></li>
-    <li role="presentation"><a href="#fundsummary_remarkment" aria-controls="fundsummary_remarkment" role="tab" data-toggle="tab">决算说明</a></li>
-  </ul>
-
-  <!-- Tab panes -->
-  <div class="tab-content">
-      <div role="tabpanel" class="tab-pane active" id="fundsummary">
-        <form class="form" id="project_fundsuammary_form" method="POST" action="">
-      {% csrf_token %}
-      <table id="mainTable" name="fundsummarytable" class="table table-striped" value={{pid}}>
-        <thead>
-          <tr>
-            <td><strong>流水号</strong></td>
-            <td colspan="3">{{projfundsummary.serial_number}}</td>
-          </tr>
-          <tr>
-            <td><strong>项目编号：</strong></td>
-            <td><input type="text" readonly="readonly" id = "summary_project_code" value="{{project.project_code}}"></input></td>
-            <td><strong>项目负责人</strong></td>
-            <td><input type="text" readonly="readonly" id="teacher" value="{{project.teacher.userid.first_name}}"></input></td>
-          </tr>
-          <tr>
-            <td><strong>项目名称</strong></td>
-            <td colspan="3"><input type="text" readonly="readonly" id="project_title" value="{{project.title}}"></input></td>
-          </tr>
-          <tr>
-            <td><STRONG>以拨入经费（元）</STRONG></td>
-            <td><input type="text" id = "summary_max_budget" readonly="readonly" value="{{project.project_budget_max}}"></input></td>
-            <td><strong>财务账号：</strong></td>
-            <td><input type="text" id = "summary_finance_account" value="{{project.finance_account}}"></input></td>
-          </tr>
-          <tr><th>科目</th><th>预算经费（元）</th><th>经费支出（元）</th><th>说明(须填写支出内容)</th></tr></thead>
-	<tbody>
-	  <tr>
-            <td><strong>1.设备费</strong></td>
-            <td>{{profundsummaryform.equcosts_budget}}</td>
-            <td>{{profundsummaryform.equcosts_expenditure}}</td>
-            <td>{{profundsummaryform.equcosts_remark}}</td>
-          </tr>
-	  <tr><td>&nbsp;&nbsp;&nbsp;(1)设备购置费</td><td>{{profundsummaryform.equacquisition_budget}}</td><td>{{profundsummaryform.equacquisition_expenditure}}</td><td>{{profundsummaryform.equacquisition_remark}}</td></tr>
-	  <tr><td>&nbsp;&nbsp;&nbsp;(2)试制改造费</td><td>{{profundsummaryform.equtrial_budget}}</td><td>{{profundsummaryform.equtrial_expenditure}}</td><td>{{profundsummaryform.equtrial_remark}}</td></tr>
-	  <tr><td>&nbsp;&nbsp;&nbsp;(3)设备改造与租凭费</td><td>{{profundsummaryform.equrent_budget}}</td><td>{{profundsummaryform.equrent_expenditure}}</td><td>{{profundsummaryform.equrent_remark}}</td></tr>
-	  <tr><td><strong>2.材料费</strong></td><td>{{profundsummaryform.material_budget}}</td><td>{{profundsummaryform.material_expenditure}}</td><td>{{profundsummaryform.material_remark}}</td></tr>
-	  <tr><td><strong>3.测试化验加工费</strong></td><td>{{profundsummaryform.testcosts_budget}}</td><td>{{profundsummaryform.testcosts_expenditure}}</td><td>{{profundsummaryform.testcosts_remark}}</td></tr>
-	  <tr><td><strong>4.燃料动力费</strong></td><td>{{profundsummaryform.fuelpower_budget}}</td><td>{{profundsummaryform.fuelpower_expenditure}}</td><td>{{profundsummaryform.fuelpower_remark}}</td></tr>
-	  <tr><td><strong>5.差旅费</strong></td><td>{{profundsummaryform.travel_budget}}</td><td>{{profundsummaryform.travel_expenditure}}</td><td>{{profundsummaryform.travel_remark}}</td></tr>
-	  <tr><td><strong>6.会议费</strong></td><td>{{profundsummaryform.conference_budget}}</td><td>{{profundsummaryform.conference_expenditure}}</td><td>{{profundsummaryform.conference_remark}}</td></tr>
-	  <tr><td><strong>7.国际合作与交流费</strong></td><td>{{profundsummaryform.cooperation_budget}}</td><td>{{profundsummaryform.cooperation_expenditure}}</td><td>{{profundsummaryform.cooperation_remark}}</td></tr>
-	  <tr><td><strong>8.出版/文献费</strong></td><td>{{profundsummaryform.publish_budget}}</td><td>{{profundsummaryform.publish_expenditure}}</td><td>{{profundsummaryform.publish_remark}}</td></tr>
-	  <tr><td><strong>9.劳务费</strong></td><td>{{profundsummaryform.laborcosts_budget}}</td><td>{{profundsummaryform.laborcosts_expenditure}}</td><td>{{profundsummaryform.laborcosts_remark}}</td></tr>
-	  <tr><td><strong>10.专家咨询费</strong></td><td>{{profundsummaryform.expertadvice_budget}}</td><td>{{profundsummaryform.expertadvice_expenditure}}</td><td>{{profundsummaryform.expertadvice_remark}}</td></tr>
-	</tbody>
-	<tfoot><tr><td><strong>合计</strong></td><td>{{profundsummaryform.total_budget}}</td><td>{{profundsummaryform.total_expenditure}}</td><td>{{profundsummaryform.total_remark}}</td></tr></tfoot>
-      </table>
-
-      <p>审核人:{{projfundsummary.finance_staff}}</p>
-      <p>审核时间:{{projfundsummary.finance_checktime}}</p>
-      {% if is_submited %}
-      <button type="button" class="btn btn-primary" onclick="projectfundsummary(false)">保存</button>
-      {% endif %}
-      <button type="button" class="btn btn-primary" id= "fundsummary_print_button"> 打印 </button>
-      </form>
-    </div>
-
-    <div role="tabpanel" class="tab-pane" id="fundsummary_remarkment">
-      <form class="form" id="project_fundsuammaryremarkment_form" method="POST" action="">
-        {% csrf_token %}
-      <p><strong>详细填写各项目支出的主要用途，若支出与预算不一致，请详细说明原因(1500以内)</strong></p>
-      {{profundsummaryremarkmentform.remarkment}}
-      <table
-         style="width:821px;position:relative;top:-5px;border:1px solid;border-color:rgb(169, 169, 169);margin-top:0px;">
-        <tr style="height:100px;">
-          <th style="border:1px solid;border-color:rgb(169, 169, 169);"> 
-            项目负责人(签章):
-          </th>
-
-          <th style="border:1px solid;border-color:rgb(169, 169, 169);"> 
-            财务部门(签章):
-            {% if showseal %}
-            <img src="{{STATIC_URL}}images/001.png" id="seal_layer" style="position:absolute;width:200px;height:200px;z-index:1;top:-100px;">
-            {% endif %}
-          </th>
-
-          <th style="border:1px solid;border-color:rgb(169, 169, 169);"> 
-            审计部门(签章):
-          </th>
+<html>
+ <head></head>
+ <body>
+  <div role="tabpanel" id="print_body"> 
+   <!-- Nav tabs --> 
+   <ul class="nav nav-tabs" role="tablist"> 
+    <li role="presentation" class="active"><a href="#fundsummary" aria-controls="fundsummary" role="tab" data-toggle="tab">决算表</a></li> 
+    <li role="presentation"><a href="#fundsummary_remarkment" aria-controls="fundsummary_remarkment" role="tab" data-toggle="tab">决算说明</a></li> 
+   </ul> 
+   <!-- Tab panes --> 
+   <div class="tab-content"> 
+    <div role="tabpanel" class="tab-pane active" id="fundsummary"> 
+     <form class="form" id="project_fundsuammary_form" method="POST" action="">
+       {% csrf_token %} 
+      <table id="mainTable" name="fundsummarytable" class="table table-striped" value="{{pid}}"> 
+       <thead> 
+        <tr> 
+         <td><strong>流水号</strong></td> 
+         <td colspan="3">{{projfundsummary.serial_number}}</td> 
+        </tr> 
+        <tr> 
+         <td><strong>项目编号：</strong></td> 
+         <td><input type="text" readonly="readonly" id="summary_project_code" value="{{project.project_code}}" /></td> 
+         <td><strong>项目负责人</strong></td> 
+         <td><input type="text" readonly="readonly" id="teacher" value="{{project.teacher.userid.first_name}}" /></td> 
+        </tr> 
+        <tr> 
+         <td><strong>项目名称</strong></td> 
+         <td colspan="3"><input type="text" readonly="readonly" id="project_title" value="{{project.title}}" /></td> 
+        </tr> 
+        <tr> 
+         <td><strong>以拨入经费（元）</strong></td> 
+         <td><input type="text" id="summary_max_budget" readonly="readonly" value="{{project.project_budget_max}}" /></td> 
+         <td><strong>财务账号：</strong></td> 
+         <td><input type="text" id="summary_finance_account" value="{{project.finance_account}}" /></td> 
+        </tr> 
+        <tr>
+         <th>科目</th>
+         <th>预算经费（元）</th>
+         <th>经费支出（元）</th>
+         <th>说明(须填写支出内容)</th>
         </tr>
-      </table>
-      <p>审核人:{{projfundsummary.finance_staff}}</p>
-      <p>审核时间:{{projfundsummary.finance_checktime}}</p>
-      {% if is_submited %}
-      <button type="button" class="btn btn-primary" onclick="projectfundsummaryremarkment()">保存</button>
-      {% if not userauth.is_adminstaff and not userauth.is_schooler %}
-      <a class="btn btn-primary" data-toggle="tab" id="fundsummary_next" onclick="projectfundsummary(true)">提交</a>
-      {% endif %}
-      {% endif %}
-      <button type="button" class="btn btn-primary" id= "fundsummary_remarkment_print_button"> 打印 </button>
-      </form>
-    </div>
-  </div>
-</div>
-
+       </thead> 
+       <tbody> 
+        <tr> 
+         <td><strong>1.设备费</strong></td> 
+         <td>{{profundsummaryform.equcosts_budget}}</td> 
+         <td>{{profundsummaryform.equcosts_expenditure}}</td> 
+         <td>{{profundsummaryform.equcosts_remark}}</td> 
+        </tr> 
+        <tr>
+         <td>&nbsp;&nbsp;&nbsp;(1)设备购置费</td>
+         <td>{{profundsummaryform.equacquisition_budget}}</td>
+         <td>{{profundsummaryform.equacquisition_expenditure}}</td>
+         <td>{{profundsummaryform.equacquisition_remark}}</td>
+        </tr> 
+        <tr>
+         <td>&nbsp;&nbsp;&nbsp;(2)试制改造费</td>
+         <td>{{profundsummaryform.equtrial_budget}}</td>
+         <td>{{profundsummaryform.equtrial_expenditure}}</td>
+         <td>{{profundsummaryform.equtrial_remark}}</td>
+        </tr> 
+        <tr>
+         <td>&nbsp;&nbsp;&nbsp;(3)设备改造与租凭费</td>
+         <td>{{profundsummaryform.equrent_budget}}</td>
+         <td>{{profundsummaryform.equrent_expenditure}}</td>
+         <td>{{profundsummaryform.equrent_remark}}</td>
+        </tr> 
+        <tr>
+         <td><strong>2.材料费</strong></td>
+         <td>{{profundsummaryform.material_budget}}</td>
+         <td>{{profundsummaryform.material_expenditure}}</td>
+         <td>{{profundsummaryform.material_remark}}</td>
+        </tr> 
+        <tr>
+         <td><strong>3.测试化验加工费</strong></td>
+         <td>{{profundsummaryform.testcosts_budget}}</td>
+         <td>{{profundsummaryform.testcosts_expenditure}}</td>
+         <td>{{profundsummaryform.testcosts_remark}}</td>
+        </tr> 
+        <tr>
+         <td><strong>4.燃料动力费</strong></td>
+         <td>{{profundsummaryform.fuelpower_budget}}</td>
+         <td>{{profundsummaryform.fuelpower_expenditure}}</td>
+         <td>{{profundsummaryform.fuelpower_remark}}</td>
+        </tr> 
+        <tr>
+         <td><strong>5.差旅费/会议费/国际合作与交流费</strong></td>
+         <td>{{profundsummaryform.travel_budget}}</td>
+         <td>{{profundsummaryform.travel_expenditure}}</td>
+         <td>{{profundsummaryform.travel_remark}}</td>
+        </tr> 
+        <tr style="display:none">
+         <td><strong>6.会议费</strong></td>
+         <td>{{profundsummaryform.conference_budget}}</td>
+         <td>{{profundsummaryform.conference_expenditure}}</td>
+         <td>{{profundsummaryform.conference_remark}}</td>
+        </tr> 
+        <tr style="display:none">
+         <td><strong>7.国际合作与交流费</strong></td>
+         <td>{{profundsummaryform.cooperation_budget}}</td>
+         <td>{{profundsummaryform.cooperation_expenditure}}</td>
+         <td>{{profundsummaryform.cooperation_remark}}</td>
+        </tr> 
+        <tr>
+         <td><strong>6.出版/文献费</strong></td>
+         <td>{{profundsummaryform.publish_budget}}</td>
+         <td>{{profundsummaryform.publish_expenditure}}</td>
+         <td>{{profundsummaryform.publish_remark}}</td>
+        </tr> 
+        <tr>
+         <td><strong>7.劳务费</strong></td>
+         <td>{{profundsummaryform.laborcosts_budget}}</td>
+         <td>{{profundsummaryform.laborcosts_expenditure}}</td>
+         <td>{{profundsummaryform.laborcosts_remark}}</td>
+        </tr> 
+        <tr>
+         <td><strong>8.专家咨询费</strong></td>
+         <td>{{profundsummaryform.expertadvice_budget}}</td>
+         <td>{{profundsummaryform.expertadvice_expenditure}}</td>
+         <td>{{profundsummaryform.expertadvice_remark}}</td>
+        </tr> 
+       </tbody> 
+       <tfoot>
+        <tr>
+         <td><strong>合计</strong></td>
+         <td>{{profundsummaryform.total_budget}}</td>
+         <td>{{profundsummaryform.total_expenditure}}</td>
+         <td>{{profundsummaryform.total_remark}}</td>
+        </tr>
+       </tfoot> 
+      </table> 
+      <p>审核人:{{projfundsummary.finance_staff}}</p> 
+      <p>审核时间:{{projfundsummary.finance_checktime}}</p> {% if is_submited %} 
+      <button type="button" class="btn btn-primary" onclick="projectfundsummary(false)">保存</button> {% endif %} 
+      <button type="button" class="btn btn-primary" id="fundsummary_print_button"> 打印 </button> 
+     </form> 
+    </div> 
+    <div role="tabpanel" class="tab-pane" id="fundsummary_remarkment"> 
+     <form class="form" id="project_fundsuammaryremarkment_form" method="POST" action="">
+       {% csrf_token %} 
+      <p><strong>详细填写各项目支出的主要用途，若支出与预算不一致，请详细说明原因(1500以内)</strong></p> {{profundsummaryremarkmentform.remarkment}} 
+      <table style="width:821px;position:relative;top:-5px;border:1px solid;border-color:rgb(169, 169, 169);margin-top:0px;"> 
+       <tbody>
+        <tr style="height:100px;"> 
+         <th style="border:1px solid;border-color:rgb(169, 169, 169);"> 项目负责人(签章): </th> 
+         <th style="border:1px solid;border-color:rgb(169, 169, 169);"> 财务部门(签章): {% if showseal %} <img src="{{STATIC_URL}}images/001.png" id="seal_layer" style="position:absolute;width:200px;height:200px;z-index:1;top:-100px;" /> {% endif %} </th> 
+         <th style="border:1px solid;border-color:rgb(169, 169, 169);"> 审计部门(签章): </th> 
+        </tr> 
+       </tbody>
+      </table> 
+      <p>审核人:{{projfundsummary.finance_staff}}</p> 
+      <p>审核时间:{{projfundsummary.finance_checktime}}</p> {% if is_submited %} 
+      <button type="button" class="btn btn-primary" onclick="projectfundsummaryremarkment()">保存</button> {% if not userauth.is_adminstaff and not userauth.is_schooler %} 
+      <a class="btn btn-primary" data-toggle="tab" id="fundsummary_next" onclick="projectfundsummary(true)">提交</a> {% endif %} {% endif %} 
+      <button type="button" class="btn btn-primary" id="fundsummary_remarkment_print_button"> 打印 </button> 
+     </form> 
+    </div> 
+   </div> 
+  </div> 
+ </body>
+</html>

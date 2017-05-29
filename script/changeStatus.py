@@ -1,4 +1,5 @@
 # coding: UTF-8
+from teacher.models import ProjectFundSummary
 from django.db.models import Q
 import datetime
 from adminStaff.models import ProjectSingle
@@ -15,18 +16,38 @@ from teacher.models import TeacherInfoSetting
 import xlrd
 from common.utility import xls_info_duplicatecheck
 
+projectFundSummary = ProjectFundSummary.objects.all()
+count = 0
+for item in projectFundSummary:
+    count += 1
+    current = ""
+    if item.travel_remark == None or item.travel_remark == "无".decode("UTF-8") :
+        item.travel_remark = ""
+    if item.conference_remark == None or item.conference_remark == "无".decode("UTF-8"):
+        item.conference_remark = ""
+    if item.cooperation_remark == None or item.cooperation_remark == "无".decode("UTF-8"):
+        item.cooperation_remark = ""
+    current = item.travel_remark + item.conference_remark + item.cooperation_remark
+    if current == "":
+        current = "无".decode("UTF-8")
+    print current
+    item.travel_remark = current
+    item.save()
 
-data = xlrd.open_workbook("1.xls")
-table = data.sheet_by_index(0)
+print "finish"
+print count 
+print ProjectFundBudget.objects.count()
+# data = xlrd.open_workbook("1.xls")
+# table = data.sheet_by_index(0)
 
-for i in range(371,692):
-    row = table.row_values(i)
-    pro=ProjectSingle.objects.get(project_code = row[14])
-    try:
-        pro.trade_code = NationalTradeCode.objects.get(category = NATIONAL_TRADE_CODE_DICTS[row[16]])
-        pro.save()
-    except:
-        print i
+# for i in range(371,692):
+#     row = table.row_values(i)
+#     pro=ProjectSingle.objects.get(project_code = row[14])
+#     try:
+#         pro.trade_code = NationalTradeCode.objects.get(category = NATIONAL_TRADE_CODE_DICTS[row[16]])
+#         pro.save()
+#     except:
+#         print i
     # college=College.objects.get(name= row[3])
     # sendemail('1',row[1],row[1][-6:],row[2],TEACHER_USER,row[0],send_email = True,college=college.id)
     # teacher= TeacherProfile.objects.get(userid__username = row[1])
@@ -59,8 +80,6 @@ for i in range(371,692):
     # project.subject = Subject.objects.get(category = SUBJECT_DICTS[int(row[18])])
     # project.save()
     # sendemail('1',row[1],row[1][-6:],row[2],EXPERT_USER,row[0],send_email = False,college=college.id)
-
-print "hello"
 # projs = ProjectSingle.objects.filter(Q(project_status__gte = PROJECT_STATUS_APPLICATION_REVIEW_START) & Q(project_status__lt = PROJECT_STATUS_APPROVAL))
 # pstatus = ProjectStatus.objects.get(status=PROJECT_STATUS_APPLICATION_EXPERT_SUBJECT)
 # print pstatus
