@@ -160,23 +160,23 @@ def fundSummary(request, form,remarkmentform,pid,finance_account,is_submited):
         else:
             laborcosts_budget = float(profundsummaryform.cleaned_data["laborcosts_budget"])
             # if laborcosts_budget <= total_budget * 0.3:
-                if total_budget <= project.project_budget_max:
-                    profundsummaryform.save()
-                    #copyFundsummaryToBudget(pid)
-                    project.finance_account=finance_account
-                    project.save()
-                    if is_submited:
-                        if profundsummaryremarkmentform.is_valid():
-                            profundsummaryremarkmentform.save()
-                            message=u"保存成功"
-                            flag = True
-                            status_confirm(request,project)
-                        else:
-                            message=u"决算详细说明未填或字数超过限制"
-                    else:
+            if total_budget <= project.project_budget_max:
+                profundsummaryform.save()
+                #copyFundsummaryToBudget(pid)
+                project.finance_account=finance_account
+                project.save()
+                if is_submited:
+                    if profundsummaryremarkmentform.is_valid():
+                        profundsummaryremarkmentform.save()
                         message=u"保存成功"
+                        flag = True
+                        status_confirm(request,project)
+                    else:
+                        message=u"决算详细说明未填或字数超过限制"
                 else:
-                    message = u"经费决算表总结额应低于项目最大预算金额,请仔细核实"
+                    message=u"保存成功"
+            else:
+                message = u"经费决算表总结额应低于项目最大预算金额,请仔细核实"
             # else:
             #     message = u"劳务费应低于总结额的30%,请仔细核实"
     else:
@@ -230,21 +230,21 @@ def fundBudget(request, form, remarkmentform,pid,max_budget,projectcode,is_submi
         else:
             laborcosts_budget = float(profundbudgetform.cleaned_data["laborcosts_budget"])
             # if laborcosts_budget <= total_budget * 0.3:
-                if total_budget <= project.project_budget_max:
-                    profundbudgetform.save()
-                    copyBudgetToFundsummary(pid)
-                    if is_submited:
-                        if profundbudgetremarkmentform.is_valid():
-                            profundbudgetremarkmentform.save()
-                            flag = True
-                            message=u"保存成功"
-                            status_confirm(request,project)
-                        else:
-                            message="预算详细说明未填或字数超过限制"
-                    else:
+            if total_budget <= project.project_budget_max:
+                profundbudgetform.save()
+                copyBudgetToFundsummary(pid)
+                if is_submited:
+                    if profundbudgetremarkmentform.is_valid():
+                        profundbudgetremarkmentform.save()
+                        flag = True
                         message=u"保存成功"
+                        status_confirm(request,project)
+                    else:
+                        message="预算详细说明未填或字数超过限制"
                 else:
-                    message = u"经费预算表总结额应低于项目最大预算金额,请仔细核实"
+                    message=u"保存成功"
+            else:
+                message = u"经费预算表总结额应低于项目最大预算金额,请仔细核实"
             # else:
             #     message = u"劳务费应低于总结额的30%,请仔细核实"
     else:
