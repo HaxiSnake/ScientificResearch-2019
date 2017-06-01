@@ -159,7 +159,7 @@ def fundSummary(request, form,remarkmentform,pid,finance_account,is_submited):
             message = u"数据未填写完整或数据格式不对，保存失败"
         else:
             laborcosts_budget = float(profundsummaryform.cleaned_data["laborcosts_budget"])
-            if laborcosts_budget <= total_budget * 0.3:
+            # if laborcosts_budget <= total_budget * 0.3:
                 if total_budget <= project.project_budget_max:
                     profundsummaryform.save()
                     #copyFundsummaryToBudget(pid)
@@ -177,8 +177,8 @@ def fundSummary(request, form,remarkmentform,pid,finance_account,is_submited):
                         message=u"保存成功"
                 else:
                     message = u"经费决算表总结额应低于项目最大预算金额,请仔细核实"
-            else:
-                message = u"劳务费应低于总结额的30%,请仔细核实"
+            # else:
+            #     message = u"劳务费应低于总结额的30%,请仔细核实"
     else:
         loginfo(p=profundsummaryform.errors,label='profundsummaryform.errors')
         message = u"数据未填写完整或数据格式不对，保存失败"
@@ -229,7 +229,7 @@ def fundBudget(request, form, remarkmentform,pid,max_budget,projectcode,is_submi
             message = u"数据未填写完整或数据格式不对，保存失败"
         else:
             laborcosts_budget = float(profundbudgetform.cleaned_data["laborcosts_budget"])
-            if laborcosts_budget <= total_budget * 0.3:
+            # if laborcosts_budget <= total_budget * 0.3:
                 if total_budget <= project.project_budget_max:
                     profundbudgetform.save()
                     copyBudgetToFundsummary(pid)
@@ -245,8 +245,8 @@ def fundBudget(request, form, remarkmentform,pid,max_budget,projectcode,is_submi
                         message=u"保存成功"
                 else:
                     message = u"经费预算表总结额应低于项目最大预算金额,请仔细核实"
-            else:
-                message = u"劳务费应低于总结额的30%,请仔细核实"
+            # else:
+            #     message = u"劳务费应低于总结额的30%,请仔细核实"
     else:
         loginfo(p=profundbudgetform.errors,label='profundbudgetform.errors')
         message = u"数据未填写完整或数据格式不对，保存失败"
