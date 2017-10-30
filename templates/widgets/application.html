@@ -42,9 +42,9 @@
       {% include "widgets/basis_content.html"%}
       {#{%include "widgets/save_button.html"%}#}
       {% if is_submited %}
-        <button class="btn btn-primary  save_button">保存当前页面信息</button>
+        <button class="btn btn-primary  save_button" id="save_button">保存当前页面信息</button>
       {% ifequal user "teacher"%}
-        <button class="btn btn-primary  submit_button" >提交</button>
+        <button class="btn btn-primary  submit_button" id="submit_button">提交</button>
       {% else %}
         <a class="btn btn-primary" href="/{{user}}?page={{page}}&page2={{page2}}">返回上一级</a>
       {% endifequal%}

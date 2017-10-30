@@ -12,11 +12,18 @@ function refreshCallBack(data){
 $(".save_button").click(function(){
     var pid = $(this).attr("args");
     var report_content = $("#id_summary").val();
-    Dajaxice.teacher.saveProgress(saveCallBack, {"pid": pid, "report_content": report_content, })
+    if (report_content.length > 300) {
+        alert("字数超过300字，请修改");
+    } else {
+        Dajaxice.teacher.saveProgress(saveCallBack, {"pid": pid, "report_content": report_content, })
+    }
+    
 });
 function saveCallBack(data){
     if(data == "ok"){
         refresh_progress_history();
+    } else if (data == "over") {
+        alert("字数超过300字，请修改");
     }
     else{
         alert("输入不能为空！");
@@ -25,9 +32,15 @@ function saveCallBack(data){
 
 $(".submit_button").click(function(){
     var pid = $(this).attr("args");
-  if(confirm("一旦您点击提交按钮， 项目建设成效和进展报告的文件上传将无法修改。")){
-    Dajaxice.teacher.submitProgress(submitCallBack, {"pid": pid, }); 
-  }
+    var content = $("#id_summary").val();
+    if (content.length > 300) {
+        alert("字数超过300字，请修改。");
+    } else {
+        if(confirm("一旦您点击提交按钮， 项目建设成效和进展报告的文件上传将无法修改。")){
+            Dajaxice.teacher.submitProgress(submitCallBack, {"pid": pid, }); 
+        }
+    }
+  
 });
 function submitCallBack(data){
     if(data.message == "empty report"){

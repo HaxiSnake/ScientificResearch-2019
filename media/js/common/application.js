@@ -183,51 +183,61 @@ $(document).on("click", ".next_step",function(){
     
 });
 $(document).on("click", ".save_button",function(){
-    
+    var content =  $("#id_basis").val();
     cnt_content = $(this).parent();
+    if (content.length > 500) {
+        alert("字数超过500，请修改")
+    } else {
+        var pid = $(this).parents("[pid]").attr("pid");
+        if($(cnt_content).attr("id") == "project_info")
+        {
+            Dajaxice.common.saveProjectInfoForm(saveProjectInfoFormCallback,{
+                'form': $("#project_info_form").serialize(),
+                'pid': pid,
+            })
+
+        }
+        else if($(cnt_content).attr("id") == "project_member")
+        {
+            
+        }
+        else if($(cnt_content).attr("id") == "basis_content")
+        {
+            Dajaxice.common.saveBasisContent(saveBasisContentCallback,{
+                'form': $("#basis_content_form").serialize(),
+                'pid':  pid,
+                'bid':  $("#basis_content_form").attr("bid"),
+            })
+        }
+        else
+        {
+            user = $("[user]").attr("user");
+
+            Dajaxice.common.saveBaseCondition(saveBaseConditionCallback,{
+                'form': $("#base_condition_form").serialize(),
+                'pid': pid,
+                'bid': $("#base_condition_form").attr("bid"),
+            })
+        }
+    }
     
-    var pid = $(this).parents("[pid]").attr("pid");
-    if($(cnt_content).attr("id") == "project_info")
-    {
-        Dajaxice.common.saveProjectInfoForm(saveProjectInfoFormCallback,{
-            'form': $("#project_info_form").serialize(),
-            'pid': pid,
-        })
-
-    }
-    else if($(cnt_content).attr("id") == "project_member")
-    {
-        
-    }
-    else if($(cnt_content).attr("id") == "basis_content")
-    {
-        Dajaxice.common.saveBasisContent(saveBasisContentCallback,{
-            'form': $("#basis_content_form").serialize(),
-            'pid':  pid,
-            'bid':  $("#basis_content_form").attr("bid"),
-        })
-    }
-    else
-    {
-        user = $("[user]").attr("user");
-
-        Dajaxice.common.saveBaseCondition(saveBaseConditionCallback,{
-            'form': $("#base_condition_form").serialize(),
-            'pid': pid,
-            'bid': $("#base_condition_form").attr("bid"),
-        })
-    }
 
 });
 
 var pid;
 $(document).on("click", ".submit_button", function(){
-  pid = $(this).parents("[pid]").attr("pid");
-  if(confirm("一旦您点击提交按钮， 申请项目网上信息和申请报告的文件上传等信息将无法修改。")){
-    Dajaxice.common.checkValid(checkValidCallback, {
-        'pid': pid,
-    });
-  }
+    var content =  $("#id_basis").val();
+    if (content.length > 500) {
+        alert("字数超过500，请修改")
+    } else {
+        pid = $(this).parents("[pid]").attr("pid");
+        if(confirm("一旦您点击提交按钮， 申请项目网上信息和申请报告的文件上传等信息将无法修改。")){
+            Dajaxice.common.checkValid(checkValidCallback, {
+                'pid': pid,
+            });
+        }
+    }
+    
 })
 function checkValidCallback(data) {
     if(data.status == 1)

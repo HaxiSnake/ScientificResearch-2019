@@ -15,28 +15,21 @@ from django.contrib.auth.models import User
 from teacher.models import TeacherInfoSetting
 import xlrd
 from common.utility import xls_info_duplicatecheck
-
-projectFundSummary = ProjectFundSummary.objects.all()
+from const.models import ProjectStatus
+projects = ProjectSingle.objects.filter(title='大连理工大学基本科研业务费信息管理平台')
 count = 0
-for item in projectFundSummary:
+status = ProjectStatus.objects.get(status=3)
+for item in projects:
     count += 1
-    current = ""
-    if item.travel_remark == None or item.travel_remark == "无".decode("UTF-8") :
-        item.travel_remark = ""
-    if item.conference_remark == None or item.conference_remark == "无".decode("UTF-8"):
-        item.conference_remark = ""
-    if item.cooperation_remark == None or item.cooperation_remark == "无".decode("UTF-8"):
-        item.cooperation_remark = ""
-    current = item.travel_remark + item.conference_remark + item.cooperation_remark
-    if current == "":
-        current = "无".decode("UTF-8")
-    print current
-    item.travel_remark = current
+    # print item.project_status.id
+    # status = ProjectStatus.objects.filter(status=3)
+    item.project_status = status
     item.save()
+    print item.project_status
+    print item.project_status.status
 
 print "finish"
 print count 
-print ProjectFundBudget.objects.count()
 # data = xlrd.open_workbook("1.xls")
 # table = data.sheet_by_index(0)
 
