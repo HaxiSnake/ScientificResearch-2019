@@ -14,7 +14,7 @@ from settings import TMP_FILES_PATH,MEDIA_URL
 from const import *
 from common.utils import getScoreTable, getScoreForm,getFinalScoreTable,getFinalScoreForm
 
-def get_xls_path(request,exceltype,proj_set,specialname="",eid=""):
+def get_xls_path(request,exceltype,proj_set,specialname="",eid="",year=0):
     """
         exceltype = EXCELTYPE_DICT 导出表类型
         proj_set 筛选出导出的项目集
@@ -26,7 +26,7 @@ def get_xls_path(request,exceltype,proj_set,specialname="",eid=""):
     print exceltype
     EXCELTYPE_DICT = EXCELTYPE_DICT_OBJECT()
     if exceltype == "achievementInfo":
-        file_path = xls_info_conclusionresult(request, proj_set)
+        file_path = xls_info_conclusionresult(request, proj_set, year)
     elif exceltype == EXCELTYPE_DICT.INFO_COLLECTION:
         file_path = xls_info_collection(request,proj_set,eid)
     elif exceltype == EXCELTYPE_DICT.INFO_FUNDSUMMARY:
@@ -736,7 +736,7 @@ def xls_info_conclusionresult_gen():
     worksheet.write_merge(1, 1, 6, 6, '标注情况')
     
     return worksheet, workbook
-def xls_info_conclusionresult(request,proj_set):
+def xls_info_conclusionresult(request,proj_set,year):
     """
     """
     xls_obj, workbook = xls_info_conclusionresult_gen()
@@ -756,7 +756,7 @@ def xls_info_conclusionresult(request,proj_set):
             pass
         _number =_number+1
     # write xls file
-    save_path = os.path.join(TMP_FILES_PATH, "%s%s.xls" % (str(datetime.date.today().year), "年大连理工大学基本科研业务费结题成果统计表"))
+    save_path = os.path.join(TMP_FILES_PATH, "%s%s.xls" % (str(year), "年大连理工大学基本科研业务费结题成果统计表"))
     workbook.save(save_path)
     return save_path
     

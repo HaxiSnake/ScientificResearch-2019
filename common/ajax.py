@@ -637,8 +637,16 @@ def ExportTeacherInfoExcel(request,category):
 
 
 @dajaxice_register
-def ExportAchievementInfoExcel(request,year):
-    projects = ProjectSingle.objects.filter(conclude_year=year)
-    path = get_xls_path(request,"achievementInfo",projects)
-    return simplejson.dumps({"status": "ok","path":path})
+def ExportAchievementInfoExcel(request,form):
+    schedule_form = ScheduleBaseForm(deserialize_form(form))
+    year = schedule_form.data["conclude_year"]
+    if year == u"-1" or year == u"None":
+
+        return simplejson.dumps({"status": "fail"})
+        
+    else :
+        projects = ProjectSingle.objects.filter(conclude_year=year)
+        path = get_xls_path(request,"achievementInfo",projects,year=year)
+        return simplejson.dumps({"status": "ok","path":path})
+        
 

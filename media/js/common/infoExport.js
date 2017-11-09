@@ -10,16 +10,20 @@ $(function(){
   })
   $("#achievement_form .export-excel").click(function(){
     $('#excelprogress').modal('show');
-    var date = new Date();
-    var year = date.getFullYear();
-    Dajaxice.common.ExportAchievementInfoExcel(ExportExcel_callback,{'year':year});
+    export_form = $(this).parents("form");
+    Dajaxice.common.ExportAchievementInfoExcel(ExportExcel_callback,{'form':$(export_form).serialize(true)});
   })
   refreshMutilipSelect();
 })
 
 function ExportExcel_callback(data){
-  location.href = data.path;
-  $('#excelprogress').modal('hide');
+  if (data.status == "ok") {
+    location.href = data.path;
+    $('#excelprogress').modal('hide');
+  } else {
+    alert("请选择正确的年份");
+  }
+  
 }
 
 function refreshMutilipSelect(){
