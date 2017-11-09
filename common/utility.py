@@ -25,7 +25,9 @@ def get_xls_path(request,exceltype,proj_set,specialname="",eid=""):
     loginfo(p = exceltype,label = "exceltype")
     print exceltype
     EXCELTYPE_DICT = EXCELTYPE_DICT_OBJECT()
-    if exceltype == EXCELTYPE_DICT.INFO_COLLECTION:
+    if exceltype == "achievementInfo":
+        file_path = xls_info_conclusionresult(request, proj_set)
+    elif exceltype == EXCELTYPE_DICT.INFO_COLLECTION:
         file_path = xls_info_collection(request,proj_set,eid)
     elif exceltype == EXCELTYPE_DICT.INFO_FUNDSUMMARY:
         file_path = xls_info_fundsummay(request,proj_set,eid)
@@ -737,7 +739,6 @@ def xls_info_conclusionresult_gen():
 def xls_info_conclusionresult(request,proj_set):
     """
     """
-
     xls_obj, workbook = xls_info_conclusionresult_gen()
     achivement_set = ProjectAchivement.objects.filter(project_id__in =proj_set).order_by("project_id__project_code")
     _number=1

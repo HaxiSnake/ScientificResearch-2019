@@ -16,27 +16,31 @@ from teacher.models import TeacherInfoSetting
 import xlrd
 from common.utility import xls_info_duplicatecheck
 
-projectFundBudget = ProjectFundBudget.objects.all()
-count = 0
-for item in projectFundBudget:
-    count += 1
-    current = ""
-    if item.travel_remark == None or item.travel_remark == "无".decode("UTF-8") :
-        item.travel_remark = ""
-    if item.conference_remark == None or item.conference_remark == "无".decode("UTF-8"):
-        item.conference_remark = ""
-    if item.cooperation_remark == None or item.cooperation_remark == "无".decode("UTF-8"):
-        item.cooperation_remark = ""
-    current = item.travel_remark + item.conference_remark + item.cooperation_remark
-    if current == "":
-        current = "无".decode("UTF-8")
-    print current
-    item.travel_remark = current
-    item.save()
 
-print "finish"
-print count 
-print ProjectFundBudget.objects.count()
+# projectFundBudget = ProjectFundBudget.objects.all()
+# count = 0
+# for item in projectFundBudget:
+#     count += 1
+#     current = ""
+#     if item.travel_remark == None or item.travel_remark == "无".decode("UTF-8") :
+#         item.travel_remark = ""
+#     if item.conference_remark == None or item.conference_remark == "无".decode("UTF-8"):
+#         item.conference_remark = ""
+#     if item.cooperation_remark == None or item.cooperation_remark == "无".decode("UTF-8"):
+#         item.cooperation_remark = ""
+#     current = item.travel_remark + item.conference_remark + item.cooperation_remark
+#     if current == "":
+#         current = "无".decode("UTF-8")
+#     print current
+#     item.travel_remark = current
+#     item.save()
+
+# print "finish"
+# print count 
+# print ProjectFundBudget.objects.count()
+
+
+
 # data = xlrd.open_workbook("1.xls")
 # table = data.sheet_by_index(0)
 

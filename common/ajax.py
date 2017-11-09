@@ -635,3 +635,10 @@ def ExportTeacherInfoExcel(request,category):
     path = get_xls_path(request,category,"")
     return simplejson.dumps({"status": "ok","path":path})
 
+
+@dajaxice_register
+def ExportAchievementInfoExcel(request,year):
+    projects = ProjectSingle.objects.filter(conclude_year=year)
+    path = get_xls_path(request,"achievementInfo",projects)
+    return simplejson.dumps({"status": "ok","path":path})
+

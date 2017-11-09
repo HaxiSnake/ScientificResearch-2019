@@ -8,6 +8,12 @@ $(function(){
     $('#excelprogress').modal('show');
     Dajaxice.common.ExportTeacherInfoExcel(ExportExcel_callback,{'category':$(this).attr("eid")});
   })
+  $("#achievement_form .export-excel").click(function(){
+    $('#excelprogress').modal('show');
+    var date = new Date();
+    var year = date.getFullYear();
+    Dajaxice.common.ExportAchievementInfoExcel(ExportExcel_callback,{'year':year});
+  })
   refreshMutilipSelect();
 })
 
