@@ -14,7 +14,7 @@ from settings import TMP_FILES_PATH,MEDIA_URL
 from const import *
 from common.utils import getScoreTable, getScoreForm,getFinalScoreTable,getFinalScoreForm
 
-def get_xls_path(request,exceltype,proj_set,specialname="",eid="",year=0):
+def get_xls_path(request,exceltype,proj_set,specialname="",eid="",year=-1):
     """
         exceltype = EXCELTYPE_DICT 导出表类型
         proj_set 筛选出导出的项目集

@@ -19,6 +19,7 @@ from adminStaff.utility import getCollege
 from teacher.forms import ProjectBudgetInformationForm,ProjectBudgetAnnualForm
 from adminStaff.forms import DispatchAddCollegeForm
 from college.forms import TeacherDispatchForm
+from common.forms import SearchForm
 
 from users.models import TeacherProfile
 from adminStaff.models import ProjectSingle
@@ -85,6 +86,7 @@ def dispatchView(request):
         teacher_users = TeacherProfile.objects.none()
     context = {
                "dispatchAddCollege_form":dispatchAddCollege_form,
+               "search_form": SearchForm(),
     }
     context.update(getContext(teacher_users, 1, "item"))
     return render(request, "college/dispatch.html", context)
