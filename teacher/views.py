@@ -66,10 +66,10 @@ def homeView(request):
         return HttpResponseRedirect(reverse("teacher.views.settingView"))
 
     project_list = get_project_list(request).filter(project_status__status__lt = PROJECT_STATUS_APPROVAL);
-    year = datetime.datetime.now().year   
-    print "a"*111
+    year = datetime.datetime.now().year  
+    print "start"*100 
     print get_project_list(request).filter(Q(application_year = year) | Q(approval_year = year))
-    projectCreationForbidCheck = (get_project_list(request).filter(Q(application_year = year) | Q(approval_year = year)).count() > 0)
+    projectCreationForbidCheck = (get_project_list(request).filter(Q(application_year = year) | Q(approval_year = year)).count() > 2)
     creationForm = ProjectCreationForm()
     comment=""
     for item in project_list:

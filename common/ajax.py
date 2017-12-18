@@ -268,12 +268,7 @@ def LookThroughResult(request,judgeid,userrole,userstatus,page,page2,search,look
     if form["judgeresult"]=="1":
         project.comment=''
         project.save()
-        print project.project_status
-        print project.project_status.status
-        print "a"*100
         status_confirm(request,project)#request,pprint project.statusroject
-        print "zxc"*100
-        print project.project_status
 
         if skip_judge:
             status_confirm(request,project)
@@ -472,8 +467,15 @@ def checkCanAddMember(request,icard):
         pro = ProjectSingle.objects.none()
     member = ProjectMember.objects.filter(Q(card = icard)& Q(project__project_status__status__lt =PROJECT_STATUS_OVER))
     if member.count() + pro.count()  < 3:
+        # 每年申报最多3个
+        print member.count() + pro.count()
         return True
     else:
+        for item in member:
+            print item.project
+        print ""
+        for item in pro:
+            print item
         return False
 
 
