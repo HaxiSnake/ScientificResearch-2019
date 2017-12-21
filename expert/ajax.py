@@ -5,6 +5,7 @@ from django.utils import simplejson
 from django.template.loader import render_to_string
 from django.db.models import Q
 
+from const import *
 from adminStaff.models import Re_Project_Expert
 from backend.utility import getContext
 from users.models import ExpertProfile
@@ -21,6 +22,12 @@ def getPagination(request, special, college, page, is_first_round):
     if college != "-1":
         re_list = re_list.filter(project__teacher__college = college)
 
+    if is_first_round:
+        re_list = re_list.filter(Q(project__project_status__status = PROJECT_STATUS_APPLICATION_EXPERT_SUBJECT) & \
+                                                      Q(project__project_special__alloc_status = True))
+    else:
+        re_list = re_list.filter(Q(project__project_status__status = PROJECT_STATUS_FINAL_EXPERT_SUBJECT) & \
+                                                      Q(project__project_special__final_alloc_status = True))
     re_list = list(re_list)
     for re_obj in re_list:
         if is_first_round:
