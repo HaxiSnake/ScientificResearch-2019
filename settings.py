@@ -96,6 +96,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django_cas.middleware.CASMiddleware',
+	'django.middleware.doc.XViewMiddleware',
+
 )
 
 ROOT_URLCONF = 'urls'
@@ -254,3 +257,10 @@ DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 
 #chartit
 CHARTIT_JS_REL_PATH = '/js/chartit-highchart/chartit/js/'
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'django_cas.backends.CASBackend',
+)
+
+CAS_SERVER_URL = 'https://sso.dlut.edu.cn/cas'
