@@ -21,7 +21,7 @@ from registration.models import RegistrationProfile
 from backend.decorators import check_auth
 from backend.logging import loginfo
 from const import *
-
+from const.models import *
 
 def active(request, activation_key,
            template_name='registration/activate.html',
