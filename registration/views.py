@@ -10,6 +10,8 @@ Desc: Registration and login redirect
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
+from django.contrib.auth.models import User
+from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.shortcuts import render
 from django.shortcuts import render_to_response
@@ -83,8 +85,11 @@ def logout_redirect(request):
     return HttpResponseRedirect('/')
 
 def cas_redirect(request):
+    print(request.user.username)
+    user = User.objects.get(username='421002198206191016')
+    login(user,request)
     auth_list = request.user.identities.all()
-    print(request.user)
+    print(request.user.username)
     choose_identity = []
     for auth_id in auth_list:
         auth = UserIdentity.objects.get(id=auth_id)
