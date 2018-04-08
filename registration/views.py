@@ -42,7 +42,7 @@ def active(request, activation_key,
                                },
                               context_instance=context)
 
-def login_redirect(request,identity):
+def login_redirect(request,identity=5):
     """
     When the user login, it will decide to jump the according page, in other
     words, school user will be imported /school/ page, if the user have many
@@ -80,3 +80,22 @@ def logout_redirect(request):
     except KeyError:
         pass
     return HttpResponseRedirect('/')
+
+def cas_redirect(request):
+    auth_list = request.user.identities.all()
+    print(request.user)
+    choose_identity = []
+    for auth_id in auth_list:
+        auth = UserIdentity.objects.get(id=auth_id)
+        if auth.identity == ADMINSTAFF_USER || auth.identity == FINANCE_USER || auth.identity == SCHOOL_USER:
+            choose_identity.insert('admin')
+        elif auth.identity == COLLEGE_USER
+            choose_identity.insert('college')
+        elif auth.identity == EXPERT_USER
+            choose_identity.insert('expert')
+        elif auth.identity == TEACHER_USER
+            choose_identity.insert('teacher')
+    context = {
+    'choose_identity': choose_identity,
+    }
+    return render(request, "registration/cas_redirect.html", context)

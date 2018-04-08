@@ -264,3 +264,5 @@ AUTHENTICATION_BACKENDS = (
 )
 
 CAS_SERVER_URL = 'https://sso.dlut.edu.cn/cas'
+
+CAS_REDIRECT_URL = '/casredirect/'

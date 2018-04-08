@@ -8,7 +8,7 @@ from django.conf.urls.defaults import *
 from django.views.generic.simple import direct_to_template
 from django.contrib.auth import views as auth_views
 
-from registration.views import active,login_redirect,logout_redirect
+from registration.views import active,login_redirect,logout_redirect,cas_redirect
 urlpatterns = patterns('',
           url(r'^active/(?P<activation_key>\w+)/$',active,name='registration_avtive'),
           url(r'^logout/$',auth_views.logout,{'next_page':'/accounts/logoutredirect'},name='auth_logout'),
@@ -25,5 +25,5 @@ urlpatterns = patterns('',
           url(r'^teacherlogin/$',auth_views.login,{'template_name':'registration/login_teacher.html'},name='auth_teacherlogin'),
           url(r'^loginredirect/(?P<identity>\w+)/$', login_redirect, name="auth_login_redirect"),
           url(r'^logoutredirect/$', logout_redirect, name="auth_logout_redirect"),
-
+          url(r'^casredirect/$', cas_redirect, name="cas_redirect"),
         )
