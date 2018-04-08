@@ -89,11 +89,11 @@ def cas_redirect(request):
         auth = UserIdentity.objects.get(id=auth_id)
         if auth.identity == ADMINSTAFF_USER or auth.identity == FINANCE_USER or auth.identity == SCHOOL_USER:
             choose_identity.insert('admin')
-        elif auth.identity == COLLEGE_USER
+        elif auth.identity == COLLEGE_USER:
             choose_identity.insert('college')
-        elif auth.identity == EXPERT_USER
+        elif auth.identity == EXPERT_USER:
             choose_identity.insert('expert')
-        elif auth.identity == TEACHER_USER
+        elif auth.identity == TEACHER_USER:
             choose_identity.insert('teacher')
     context = {
     'choose_identity': choose_identity,
