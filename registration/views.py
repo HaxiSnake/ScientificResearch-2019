@@ -87,7 +87,7 @@ def logout_redirect(request):
 def cas_redirect(request):
     print(request.user.username)
     user = User.objects.get(username='421002198206191016')
-    login(user,request)
+    login(request,user)
     auth_list = request.user.identities.all()
     print(request.user.username)
     choose_identity = []
