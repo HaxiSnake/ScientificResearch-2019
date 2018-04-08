@@ -11,8 +11,7 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
-from django.contrib.auth import login
-from django.contrib.auth import logout
+from django.contrib.auth import logout, login, load_backend, authenticate
 from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.template import RequestContext
