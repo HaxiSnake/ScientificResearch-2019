@@ -85,7 +85,7 @@ def logout_redirect(request):
     return HttpResponseRedirect('/')
 
 def cas_redirect(request):
-    print(request.user.username)
+
     logout(request)
     user = User.objects.get(username='421002198206191016')
     if not user:
@@ -94,11 +94,10 @@ def cas_redirect(request):
     user.backend = "%s.%s" % (
         backend.__module__, backend.__class__.__name__)
     login(request,user)
-    print(request.user.username)
+
     auth_list = request.user.identities.all()
     choose_identity = []
-    for auth_id in auth_list:
-        auth = UserIdentity.objects.get(id=auth_id)
+    for auth in auth_list:
         if auth.identity == ADMINSTAFF_USER or auth.identity == FINANCE_USER or auth.identity == SCHOOL_USER:
             choose_identity.insert('admin')
         elif auth.identity == COLLEGE_USER:
