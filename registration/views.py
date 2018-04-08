@@ -87,7 +87,7 @@ def cas_redirect(request):
     choose_identity = []
     for auth_id in auth_list:
         auth = UserIdentity.objects.get(id=auth_id)
-        if auth.identity == ADMINSTAFF_USER || auth.identity == FINANCE_USER || auth.identity == SCHOOL_USER:
+        if auth.identity == ADMINSTAFF_USER or auth.identity == FINANCE_USER or auth.identity == SCHOOL_USER:
             choose_identity.insert('admin')
         elif auth.identity == COLLEGE_USER
             choose_identity.insert('college')
