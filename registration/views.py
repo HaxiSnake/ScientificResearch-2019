@@ -91,9 +91,9 @@ def cas_redirect(request):
     if not user:
         raise HttpResponseForbidden()
     backend = load_backend(settings.AUTHENTICATION_BACKENDS[0])
-    new_user.backend = "%s.%s" % (
+    user.backend = "%s.%s" % (
         backend.__module__, backend.__class__.__name__)
-    login(request,new_user)
+    login(request,user)
     print(request.user.username)
     auth_list = request.user.identities.all()
     choose_identity = []
