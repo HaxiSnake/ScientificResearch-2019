@@ -17,6 +17,7 @@ from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
+from django.http import HttpResponseForbidden
 from registration.models import RegistrationProfile
 from backend.decorators import check_auth
 from backend.logging import loginfo
@@ -86,10 +87,16 @@ def logout_redirect(request):
 
 def cas_redirect(request):
     print(request.user.username)
+    logout(request)
     user = User.objects.get(username='421002198206191016')
-    login(request,user)
-    auth_list = request.user.identities.all()
+    if not user:
+        raise HttpResponseForbidden()
+    backend = load_backend(settings.AUTHENTICATION_BACKENDS[0])
+    new_user.backend = "%s.%s" % (
+        backend.__module__, backend.__class__.__name__)
+    login(request,new_user)
     print(request.user.username)
+    auth_list = request.user.identities.all()
     choose_identity = []
     for auth_id in auth_list:
         auth = UserIdentity.objects.get(id=auth_id)
