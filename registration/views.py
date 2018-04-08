@@ -99,13 +99,13 @@ def cas_redirect(request):
     choose_identity = []
     for auth in auth_list:
         if auth.identity == ADMINSTAFF_USER or auth.identity == FINANCE_USER or auth.identity == SCHOOL_USER:
-            choose_identity.insert('admin')
+            choose_identity.append('admin')
         elif auth.identity == COLLEGE_USER:
-            choose_identity.insert('college')
+            choose_identity.append('college')
         elif auth.identity == EXPERT_USER:
-            choose_identity.insert('expert')
+            choose_identity.append('expert')
         elif auth.identity == TEACHER_USER:
-            choose_identity.insert('teacher')
+            choose_identity.append('teacher')
     context = {
     'choose_identity': choose_identity,
     }
