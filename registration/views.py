@@ -22,6 +22,7 @@ from backend.decorators import check_auth
 from backend.logging import loginfo
 from const import *
 from const.models import *
+from common.contrast import get_id_and_name
 
 def active(request, activation_key,
            template_name='registration/activate.html',
@@ -85,16 +86,16 @@ def logout_redirect(request):
     return HttpResponseRedirect('/')
 
 def cas_redirect(request):
-
+    username = request.user.username
     logout(request)
-    user = User.objects.get(username='421002198206191016')
+    user_id, first_name = get_id_and_name(username)
+    user = User.objects.get(username=user_id)
     if not user:
         raise HttpResponseForbidden()
     backend = load_backend(settings.AUTHENTICATION_BACKENDS[0])
     user.backend = "%s.%s" % (
         backend.__module__, backend.__class__.__name__)
     login(request,user)
-
     auth_list = request.user.identities.all()
     choose_identity = []
     for auth in auth_list:
@@ -108,5 +109,6 @@ def cas_redirect(request):
             choose_identity.append('teacher')
     context = {
     'choose_identity': choose_identity,
+    'user_name':first_name
     }
     return render(request, "registration/cas_redirect.html", context)

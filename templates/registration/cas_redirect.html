@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}style/accounts_form.css" >
 
 <div class="container form-container">
-<h2>请在下列表中选择您合法的登录的身份</h2>
+<h2>尊敬的{{ user_name }} : 请在下列表中选择您合法的登录的身份</h2>
 	<div class="row">
     {% if 'admin' in choose_identity %}
 		<div class="span3"><h3><a href="/accounts/loginredirect/adminUser">管理员</a></h3></div>
