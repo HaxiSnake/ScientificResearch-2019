@@ -91,10 +91,9 @@ def cas_redirect(request):
     logout(request)
     user_id, first_name = get_id_and_name(str(username))
     print(user_id, first_name)
-    user = User.objects.get(username=user_id) or None
-    print(user)
-    if not user:
-        print( 123 )
+    try:
+        user = User.objects.get(username=user_id)
+    except:
         return HttpResponseRedirect('/')
     backend = load_backend(settings.AUTHENTICATION_BACKENDS[0])
     user.backend = "%s.%s" % (
