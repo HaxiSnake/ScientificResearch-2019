@@ -90,9 +90,8 @@ def cas_redirect(request):
     print(username)
     user_id, first_name = get_id_and_name(str(username))
     print(user_id, first_name)
-    user = None
     try:
-        user = User.objects.get(username=user_id)
+        user = User.objects.get(username=user_id) or User.objects.get(username=username) or None
     except:
         pass
     if not user:
