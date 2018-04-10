@@ -16,7 +16,7 @@ from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponseForbidden
-from djangp.db.models import Q
+from django.db.models import Q
 
 from registration.models import RegistrationProfile
 from backend.decorators import check_auth
