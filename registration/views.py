@@ -93,7 +93,9 @@ def cas_redirect(request):
     print(user_id, first_name)
     try:
         user = User.objects.get(username=user_id)
+        print(user)
     except:
+        print(user)
         return HttpResponseRedirect('/')
     backend = load_backend(settings.AUTHENTICATION_BACKENDS[0])
     user.backend = "%s.%s" % (
