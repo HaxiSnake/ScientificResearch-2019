@@ -1,4 +1,7 @@
 import pandas as pd
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 def get_id_and_name(work_num, file='contrast.xls'):
     data = pd.read_excel(file, sheetname='Sheet1',header=None).astype('str')
