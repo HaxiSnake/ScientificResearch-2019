@@ -89,6 +89,7 @@ def cas_redirect(request):
     username = request.user.username
     logout(request)
     user_id, first_name = get_id_and_name(username)
+    print(user_id, first_name)
     user = User.objects.get(username=user_id)
     if not user:
         raise HttpResponseForbidden()
