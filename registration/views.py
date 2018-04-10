@@ -92,7 +92,7 @@ def cas_redirect(request):
     print(username, user_id, first_name)
     user = None
     try:
-        user = User.objects.get(username=user_id)
+        user = User.objects.get(Q(username=user_id) | Q(username=username))
     except:
         pass
     print(user)
@@ -115,6 +115,6 @@ def cas_redirect(request):
             choose_identity.append('teacher')
     context = {
     'choose_identity': choose_identity,
-    'user_name':user.username
+    'user_name':user.first_name
     }
     return render(request, "registration/cas_redirect.html", context)
