@@ -15,8 +15,9 @@ from django.contrib.auth import logout, login, load_backend, authenticate
 from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-
 from django.http import HttpResponseForbidden
+from djangp.db.models import Q
+
 from registration.models import RegistrationProfile
 from backend.decorators import check_auth
 from backend.logging import loginfo
@@ -87,12 +88,10 @@ def logout_redirect(request):
 
 def cas_redirect(request):
     username = request.user.username
-    print(username)
     user_id, first_name = get_id_and_name(str(username))
-    print(user_id, first_name)
     user = None
     try:
-        user = User.objects.get(username=user_id) or User.objects.get(username=username) or None
+        user = User.objects.get(Q(username=user_id) | Q(username=username))
     except:
         pass
     if not user:
@@ -114,6 +113,6 @@ def cas_redirect(request):
             choose_identity.append('teacher')
     context = {
     'choose_identity': choose_identity,
-    'user_name':first_name
+    'user_name':user.username
     }
     return render(request, "registration/cas_redirect.html", context)
