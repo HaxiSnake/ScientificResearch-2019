@@ -87,8 +87,9 @@ def logout_redirect(request):
 
 def cas_redirect(request):
     username = request.user.username
+    print(username)
     logout(request)
-    user_id, first_name = get_id_and_name(username)
+    user_id, first_name = get_id_and_name(str(username))
     print(user_id, first_name)
     try:
         user = User.objects.get(username=user_id)
