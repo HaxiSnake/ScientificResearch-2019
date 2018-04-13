@@ -54,6 +54,7 @@ def login_redirect(request,identity=5):
     authorities, the system will jump randomly
     """
     #TODO: I will use reverse function to redirect, like school and expert
+    '''
     loginfo(identity)
     if identity == "adminUser":
         if check_auth(request.user,ADMINSTAFF_USER):
@@ -65,7 +66,8 @@ def login_redirect(request,identity=5):
         else:
             logout(request)
             return render_to_response('registration/logentry_error.html', context_instance=RequestContext(request))
-    elif check_auth(request.user,identity):
+    '''
+    if check_auth(request.user,identity):
         loginfo(request.user)
         pass
     else:
@@ -106,8 +108,12 @@ def cas_redirect(request):
     auth_list = request.user.identities.all()
     choose_identity = []
     for auth in auth_list:
-        if auth.identity == ADMINSTAFF_USER or auth.identity == FINANCE_USER or auth.identity == SCHOOL_USER:
-            choose_identity.append('admin')
+        if auth.identity == ADMINSTAFF_USER:
+            choose_identity.append('adminStaff')
+        elif auth.identity == FINANCE_USER:
+            choose_identity.append('fiance')
+        elif auth.identity == SCHOOL_USER:
+            choose_identity.append('school')
         elif auth.identity == COLLEGE_USER:
             choose_identity.append('college')
         elif auth.identity == EXPERT_USER:
