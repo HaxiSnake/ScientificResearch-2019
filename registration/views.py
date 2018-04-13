@@ -89,22 +89,6 @@ def logout_redirect(request):
     return HttpResponseRedirect('/')
 
 def cas_redirect(request):
-    username = request.user.username
-    user_id, first_name = get_id_and_name(str(username))
-    user = None
-    try:
-        if user_id:
-            user = User.objects.get(username=user_id)
-        else:
-            user = User.objects.get(username=username)
-    except:
-        pass
-    if not user:
-        return HttpResponseRedirect('/')
-    backend = load_backend(settings.AUTHENTICATION_BACKENDS[0])
-    user.backend = "%s.%s" % (
-        backend.__module__, backend.__class__.__name__)
-    login(request,user)
     auth_list = request.user.identities.all()
     choose_identity = []
     for auth in auth_list:

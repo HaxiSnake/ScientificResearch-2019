@@ -7,6 +7,7 @@ import urllib2
 from django.conf import settings
 
 from django_cas.models import User
+from common.contrast import get_id_and_name
 
 __all__ = ['CASBackend']
 
@@ -169,12 +170,15 @@ class CASBackend(object):
             request.session['attributes'] = attributes
         if not username:
             return None
+        user_id = get_id_and_name(str(username))
         try:
-            user = User.objects.get(username=username)
+            if user_id:
+                user = User.objects.get(username=user_id)
+            else:
+                user = User.objects.get(username=username)
         except User.DoesNotExist:
             # user will have an "unusable" password
-            user = User.objects.create_user(username, '')
-            user.save()
+            return None
         return user
 
     def get_user(self, user_id):
