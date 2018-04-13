@@ -98,7 +98,7 @@ class TeacherInfoSetting(models.Model):
     title = models.CharField(max_length=100, blank=False, null=True, choices=PROFESSIONAL_TITLE_CHOICES, default=PROFESSIONAL_TITLE_CHOICES[-1][0], verbose_name="职称")
     base_type = models.CharField(max_length=100, blank=False, null=True, choices=RESEARCH_BASES_TYPE_CHOICES, default=RESEARCH_BASES_TYPE_CHOICES[-1][0], verbose_name="所在研究基地类型")
     position = models.CharField(max_length=100, blank=False, null=True, choices=EXECUTIVE_POSITION_CHOICES, default=EXECUTIVE_POSITION_CHOICES[-1][0], verbose_name="行政职务")
-    
+
     class Meta:
         verbose_name = "注册信息"
         verbose_name_plural = "注册信息"
@@ -239,7 +239,7 @@ class ProjectFundBudget(models.Model):
     serial_number = models.CharField(max_length=20,blank=True,verbose_name="经费决算表流水号")
     remarkment = models.CharField(max_length=2000,blank=False,null=True,
                                            verbose_name="经费预算说明")
-   
+
     equcosts_budget = models.FloatField(blank=False, null=True,default="0",
                                            verbose_name="设备费预算经费")
     equcosts_remark = models.CharField(max_length=100, blank=True, null=True,
@@ -298,13 +298,12 @@ class ProjectFundBudget(models.Model):
                                            verbose_name="合计说明")
     finance_comment = models.CharField(max_length=100, blank=True, null=True,default="",
                                            verbose_name="财务评审意见")
-   
+
     finance_staff =models.CharField(max_length=20,blank=False,null=True,verbose_name="财务审核人")
     finance_checktime=models.CharField(max_length=50,blank=False,null=True,verbose_name="审核时间")
     class Meta:
         verbose_name = "经费预算表"
         verbose_name_plural = "经费预算表"
-   
+
     def __unicode__(self):
         return self.project_id.__unicode__()
-   
