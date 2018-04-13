@@ -124,4 +124,7 @@ def cas_redirect(request):
     'choose_identity': choose_identity,
     'user_name':user.first_name
     }
-    return render(request, "registration/cas_redirect.html", context)
+    if choose_identity:
+        return render(request, "registration/cas_redirect.html", context)
+    else :
+        return render(request, "registration/not_regits.html")
