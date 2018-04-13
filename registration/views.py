@@ -106,7 +106,7 @@ def cas_redirect(request):
             choose_identity.append('teacher')
     context = {
     'choose_identity': choose_identity,
-    'user_name':user.first_name
+    'user_name':request.user.first_name
     }
     if choose_identity:
         return render(request, "registration/cas_redirect.html", context)
