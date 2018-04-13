@@ -10,8 +10,8 @@
     {% if 'adminStaff' in choose_identity %}
 		<div class="span3"><h3><a href="/accounts/loginredirect/{{auth_choices.adminStaff}}">总管理员</a></h3></div>
     {% endif %}
-		{% if 'fiance' in choose_identity %}
-		<div class="span3"><h3><a href="/accounts/loginredirect/{{auth_choices.fiance}}">财务管理员</a></h3></div>
+		{% if 'finance' in choose_identity %}
+		<div class="span3"><h3><a href="/accounts/loginredirect/{{auth_choices.finance}}">财务管理员</a></h3></div>
 		{% endif %}
 		{% if 'school' in choose_identity %}
 		<div class="span3"><h3><a href="/accounts/loginredirect/{{auth_choices.school}}">专题管理员</a></h3></div>

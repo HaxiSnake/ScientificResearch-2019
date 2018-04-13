@@ -111,7 +111,7 @@ def cas_redirect(request):
         if auth.identity == ADMINSTAFF_USER:
             choose_identity.append('adminStaff')
         elif auth.identity == FINANCE_USER:
-            choose_identity.append('fiance')
+            choose_identity.append('finance')
         elif auth.identity == SCHOOL_USER:
             choose_identity.append('school')
         elif auth.identity == COLLEGE_USER:
