@@ -10,15 +10,20 @@ Desc: Registration and login redirect
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
-from django.contrib.auth import logout
+from django.contrib.auth.models import User
+from django.contrib.auth import logout, login, load_backend, authenticate
+from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.http import HttpResponseForbidden
+from django.db.models import Q
 
 from registration.models import RegistrationProfile
 from backend.decorators import check_auth
 from backend.logging import loginfo
 from const import *
-
+from const.models import *
+from common.contrast import get_id_and_name
 
 def active(request, activation_key,
            template_name='registration/activate.html',
@@ -42,13 +47,14 @@ def active(request, activation_key,
                                },
                               context_instance=context)
 
-def login_redirect(request,identity):
+def login_redirect(request,identity=5):
     """
     When the user login, it will decide to jump the according page, in other
     words, school user will be imported /school/ page, if the user have many
     authorities, the system will jump randomly
     """
     #TODO: I will use reverse function to redirect, like school and expert
+    '''
     loginfo(identity)
     if identity == "adminUser":
         if check_auth(request.user,ADMINSTAFF_USER):
@@ -60,7 +66,8 @@ def login_redirect(request,identity):
         else:
             logout(request)
             return render_to_response('registration/logentry_error.html', context_instance=RequestContext(request))
-    elif check_auth(request.user,identity):
+    '''
+    if check_auth(request.user,identity):
         loginfo(request.user)
         pass
     else:
@@ -80,3 +87,28 @@ def logout_redirect(request):
     except KeyError:
         pass
     return HttpResponseRedirect('/')
+
+def cas_redirect(request):
+    auth_list = request.user.identities.all()
+    choose_identity = []
+    for auth in auth_list:
+        if auth.identity == ADMINSTAFF_USER:
+            choose_identity.append('adminStaff')
+        elif auth.identity == FINANCE_USER:
+            choose_identity.append('finance')
+        elif auth.identity == SCHOOL_USER:
+            choose_identity.append('school')
+        elif auth.identity == COLLEGE_USER:
+            choose_identity.append('college')
+        elif auth.identity == EXPERT_USER:
+            choose_identity.append('expert')
+        elif auth.identity == TEACHER_USER:
+            choose_identity.append('teacher')
+    context = {
+    'choose_identity': choose_identity,
+    'user_name':request.user.first_name
+    }
+    if choose_identity:
+        return render(request, "registration/cas_redirect.html", context)
+    else :
+        return render(request, "registration/not_regis.html")

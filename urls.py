@@ -78,6 +78,7 @@ urlpatterns = patterns('',
         r'^errors/',
         include("backend.urls")
     ),
+    url(r'^login/$', 'django_cas.views.login'),
 )
 
 urlpatterns += patterns('', url(r'tinymce/', include('tinymce.urls')),)

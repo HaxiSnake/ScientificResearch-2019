@@ -1,0 +1,30 @@
+{% extends "registration/widgets/baseback.html" %}
+
+{%block form-content%}
+<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}style/accounts_form.css" >
+
+<div class="container form-container">
+<h2>尊敬的{{ user_name }} ：</h2>
+<h2>请在下列表中选择您合法的登录的身份</h2>
+	<div class="row">
+    {% if 'adminStaff' in choose_identity %}
+		<div class="span3"><h3><a href="/accounts/loginredirect/{{auth_choices.adminStaff}}">总管理员</a></h3></div>
+    {% endif %}
+		{% if 'finance' in choose_identity %}
+		<div class="span3"><h3><a href="/accounts/loginredirect/{{auth_choices.finance}}">财务管理员</a></h3></div>
+		{% endif %}
+		{% if 'school' in choose_identity %}
+		<div class="span3"><h3><a href="/accounts/loginredirect/{{auth_choices.school}}">专题管理员</a></h3></div>
+		{% endif %}
+    {% if 'college' in choose_identity %}
+		<div class="span3"><h3><a href="/accounts/loginredirect/{{auth_choices.college}}">学院秘书</a></h3></div>
+    {% endif %}
+    {% if 'expert' in choose_identity %}
+		<div class="span3"><h3><a href="/accounts/loginredirect/{{auth_choices.expert}}">专家</a></h3></div>
+    {% endif %}
+    {% if 'teacher' in choose_identity %}
+		<div class="span3"><h3><a href="/accounts/loginredirect/{{auth_choices.teacher}}">教师</a></h3></div>
+    {% endif %}
+	</div>
+</div>
+{% endblock %}

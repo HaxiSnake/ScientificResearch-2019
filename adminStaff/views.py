@@ -61,7 +61,7 @@ def allocManageView(request):
     for i in college_list:
         if i['user']:
             user_college_info[i['user']].append(i['name'])
-    instance_list = [ 
+    instance_list = [
         {
             'object_chinese_name':"专题",
             'object_name': "special",
@@ -154,7 +154,7 @@ def dispatchView(request):
 @authority_required(ADMINSTAFF_USER)
 def financialView(request):
     userauth = {
-                "role": 'adminStaff', 
+                "role": 'adminStaff',
     }
     return financialManage(request, userauth)
 
@@ -163,7 +163,7 @@ def financialView(request):
 @authority_required(ADMINSTAFF_USER)
 def financialInfoView(request):
     budgetinfoform = ProjectBudgetInformationForm()
-    budgetannuform = ProjectBudgetAnnualForm()    
+    budgetannuform = ProjectBudgetAnnualForm()
     context = {
         'budgetinfoform':budgetinfoform,
         'budgetannuform':budgetannuform,
@@ -278,4 +278,3 @@ def createProject(request):
     project group member change
     """
     return render(request, 'adminStaff/create_project.html', {'form': ProjectCreationTeacherForm()})
-    

@@ -43,8 +43,8 @@ server {
 	}
 
         location /static {
-                 alias /home/sie/mysites/scientificResearch/static/; 
-                 access_log off;  
+                 alias /home/sie/mysites/scientificResearch/static/;
+                 access_log off;
         }
 
 
@@ -53,7 +53,7 @@ server {
         }
 
         location /media {
-                 root  /home/sie/mysites/scientificResearch/; 
+                 root  /home/sie/mysites/scientificResearch/;
                  break;
          }
 
