@@ -162,26 +162,26 @@ print 'dddd'
 ACCOUNT_ACTIVATION_DAYS = 30
 LOGIN_REDIRECT_URL = '/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-SERVER_EMAIL = "kyywf@dlut.edu.cn"
-EMAIL_SUBJECT_PREFIX = '[ScientificResearch]'
-EMAIL_HOST = 'mail.dlut.edu.cn'
-EMAIL_PORT = '25'
-EMAIL_HOST_USER = 'kyywf@dlut.edu.cn'
-f = open('password.tmp')
-EMAIL_HOST_PASSWORD = f.read().strip()
-f.close()
-DEFAULT_FROM_EMAIL = 'kyywf@dlut.edu.cn'
-EMAIL_USE_TLS = False
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# SERVER_EMAIL = "kyywf@dlut.edu.cn"
+# EMAIL_SUBJECT_PREFIX = '[ScientificResearch]'
+# EMAIL_HOST = 'mail.dlut.edu.cn'
+# EMAIL_PORT = '25'
+# EMAIL_HOST_USER = 'kyywf@dlut.edu.cn'
+# f = open('password.tmp')
+# EMAIL_HOST_PASSWORD = f.read().strip()
+# f.close()
+# DEFAULT_FROM_EMAIL = 'kyywf@dlut.edu.cn'
+# EMAIL_USE_TLS = False
 
-# EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
-# SERVER_EMAIL = "862799735@qq.com"
-# EMAIL_SUBJECT_PREFIX = '[MinzuInnovationManagement]'
-# EMAIL_HOST = 'smtp.qq.com'
-# EMAIL_PORT = '465'
-# EMAIL_HOST_USER = '862799735@qq.com'
-# EMAIL_HOST_PASSWORD = 'asd2148025'
-# DEFAULT_FROM_EMAIL = '862799735@qq.com'
+EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
+SERVER_EMAIL = "862799735@qq.com"
+EMAIL_SUBJECT_PREFIX = '[MinzuInnovationManagement]'
+EMAIL_HOST = 'smtp.qq.com'
+EMAIL_PORT = '465'
+EMAIL_HOST_USER = '862799735@qq.com'
+EMAIL_HOST_PASSWORD = 'asd2148025'
+DEFAULT_FROM_EMAIL = '862799735@qq.com'
 
 #########################
 # File Transfer settings
