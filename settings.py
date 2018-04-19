@@ -175,7 +175,7 @@ LOGIN_REDIRECT_URL = '/'
 # EMAIL_USE_TLS = False
 
 EMAIL_USER = '1911362549@mail.dlut.edu.cn'
-EMAIL_USER = '19940308liuxiang'
+EMAIL_PASS = '19940308liuxiang'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 SERVER_EMAIL = EMAIL_USER
