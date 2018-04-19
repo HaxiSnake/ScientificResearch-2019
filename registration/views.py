@@ -24,6 +24,8 @@ from backend.logging import loginfo
 from const import *
 from const.models import *
 from common.contrast import get_id_and_name
+from django.conf import settings
+from django.core.mail import send_mail
 
 def active(request, activation_key,
            template_name='registration/activate.html',
@@ -108,6 +110,11 @@ def cas_redirect(request):
     'choose_identity': choose_identity,
     'user_name':request.user.first_name
     }
+    send_mail_flag = send_mail('1',
+                               '1',
+                               settings.DEFAULT_FROM_EMAIL,
+                               ['1911362549@qq.com'])
+    print(send_mail_flag)
     if choose_identity:
         return render(request, "registration/cas_redirect.html", context)
     else :
