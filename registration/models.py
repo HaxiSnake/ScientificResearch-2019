@@ -88,7 +88,7 @@ class RegistrationManager(models.Manager):
                                         'password':password})
                 logger.error(message)
                 #此处加监控标志
-                print(new_user)
+                print(new_user.email)
                 send_mail_flag = send_mail(subject,
                                            message,
                                            settings.DEFAULT_FROM_EMAIL,
