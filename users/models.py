@@ -55,7 +55,7 @@ class SchoolProfile(models.Model):
 
     def __unicode__(self):
         return '%s' % (self.userid)
-    
+
 
     def save(self, *args, **kwargs):
         super(SchoolProfile, self).save()
@@ -93,7 +93,7 @@ class Special(models.Model):
 
     expert_final_review = models.ForeignKey(ExpertFinalReview, blank=True, null=True,verbose_name=u"专家评审终审表")
 
-    
+
     name = models.CharField(blank=False,max_length=30)
     review_status = models.BooleanField(blank=True,default=True)
     alloc_status = models.BooleanField(blank=True,default= False)

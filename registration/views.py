@@ -25,6 +25,7 @@ from const import *
 from const.models import *
 from common.contrast import get_id_and_name
 
+
 def active(request, activation_key,
            template_name='registration/activate.html',
            extra_context=None):
@@ -108,6 +109,7 @@ def cas_redirect(request):
     'choose_identity': choose_identity,
     'user_name':request.user.first_name
     }
+
     if choose_identity:
         return render(request, "registration/cas_redirect.html", context)
     else :
