@@ -162,29 +162,16 @@ print 'dddd'
 ACCOUNT_ACTIVATION_DAYS = 30
 LOGIN_REDIRECT_URL = '/'
 
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# SERVER_EMAIL = "kyywf@dlut.edu.cn"
-# EMAIL_SUBJECT_PREFIX = '[ScientificResearch]'
-# EMAIL_HOST = 'mail.dlut.edu.cn'
-# EMAIL_PORT = '25'
-# EMAIL_HOST_USER = 'kyywf@dlut.edu.cn'
-# f = open('password.tmp')
-# EMAIL_HOST_PASSWORD = f.read().strip()
-# f.close()
-# DEFAULT_FROM_EMAIL = 'kyywf@dlut.edu.cn'
-# EMAIL_USE_TLS = False
-
-EMAIL_USER = '1955738360@qq.com'
-EMAIL_PASS = '19940308liuxiang'
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-SERVER_EMAIL = EMAIL_USER
-EMAIL_SUBJECT_PREFIX = '[DlutInnovationManagement]'
-EMAIL_HOST = 'mail.qq.com'
-EMAIL_PORT = '587'
-EMAIL_HOST_USER = EMAIL_USER
-EMAIL_HOST_PASSWORD = EMAIL_PASS
-DEFAULT_FROM_EMAIL = EMAIL_USER
+SERVER_EMAIL = "kyywf@dlut.edu.cn"
+EMAIL_SUBJECT_PREFIX = '[ScientificResearch]'
+EMAIL_HOST = 'mail.dlut.edu.cn'
+EMAIL_PORT = '25'
+EMAIL_HOST_USER = 'kyywf@dlut.edu.cn'
+f = open('password.tmp')
+EMAIL_HOST_PASSWORD = f.read().strip()
+f.close()
+DEFAULT_FROM_EMAIL = 'kyywf@dlut.edu.cn'
 EMAIL_USE_TLS = False
 
 # EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
