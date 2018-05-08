@@ -266,3 +266,5 @@ AUTHENTICATION_BACKENDS = (
 CAS_SERVER_URL = 'https://sso.dlut.edu.cn/cas'
 
 CAS_REDIRECT_URL = 'accounts/casredirect/'
+
+CAS_LOGOUT_COMPLETELY = 1
