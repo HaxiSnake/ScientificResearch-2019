@@ -13,4 +13,4 @@ except ImportError, err:
     sys.exit(1)
 
 if __name__ == "__main__":
-    execute_manager(settings_production)
+    execute_manager(settings_dev)
