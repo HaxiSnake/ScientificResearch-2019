@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from const import TEACHER_USER
+from const.models import UserIdentity
 from users.models import TeacherProfile,SchoolProfile,CollegeProfile,ExpertProfile,College
 from teacher.models import TeacherInfoSetting
 
