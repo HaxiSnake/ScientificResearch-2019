@@ -18,3 +18,4 @@ def addTeacher(id, college):
     teacherInfoSettingObj.card = username
     teacherInfoSettingObj.name = person_firstname
     teacherInfoSettingObj.save()
+    return 1
