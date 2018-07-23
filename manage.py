@@ -4,6 +4,8 @@ from django.core.management import execute_manager
 import imp
 try:
     import settings_dev
+    import settings_production
+
 except ImportError, err:
     import sys
     sys.stderr.write("Manage import Error\n")
