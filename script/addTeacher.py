@@ -16,7 +16,7 @@ def addTeacher(id, college):
     teacherProfileObj = TeacherProfile(userid=user,college=collegeObj)
     teacherProfileObj.save()
     teacherInfoSettingObj = TeacherInfoSetting(teacher=teacherProfileObj)
-    teacherInfoSettingObj.card = username
-    teacherInfoSettingObj.name = person_firstname
+    teacherInfoSettingObj.card = user.username
+    teacherInfoSettingObj.name = user.first_name
     teacherInfoSettingObj.save()
     return 1
