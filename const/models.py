@@ -242,7 +242,7 @@ class UserTrans(models.Model):
                                  verbose_name="用户姓名")
     work_number = models.CharField(max_length=30, blank=False, unique=True,
                                   verbose_name="职工号")
-    remark = models.CharField(max_length=100, blank=True, unique=True,
+    remark = models.CharField(max_length=100, blank=True,
                                   verbose_name="备注")
     class Meta:
         verbose_name = "用户身份转换表"
