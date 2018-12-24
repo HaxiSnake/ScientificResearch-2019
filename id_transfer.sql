@@ -241,7 +241,6 @@ INSERT INTO `const_usertrans`  (id_number, name, work_number, remark) VALUES ('5
 INSERT INTO `const_usertrans`  (id_number, name, work_number, remark) VALUES ('210211196306265850', '董闯', '1994011024', '');
 INSERT INTO `const_usertrans`  (id_number, name, work_number, remark) VALUES ('210203196908125273', '朱爱民', '1994011025', '');
 INSERT INTO `const_usertrans`  (id_number, name, work_number, remark) VALUES ('230203195507101237', '迟国泰', '1994011028', '');
-INSERT INTO `const_usertrans`  (id_number, name, work_number, remark) VALUES ('210204195510185841', '王梅', '1994011050', '');
 INSERT INTO `const_usertrans`  (id_number, name, work_number, remark) VALUES ('210211196509195872', '马学虎', '1994011054', '');
 INSERT INTO `const_usertrans`  (id_number, name, work_number, remark) VALUES ('210202196801105428', '乔卫红', '1994011055', '');
 INSERT INTO `const_usertrans`  (id_number, name, work_number, remark) VALUES ('150102196905262522', '李文翠', '1994011057', '');
