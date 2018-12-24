@@ -166,7 +166,7 @@ class StaticsTypeDict(models.Model):
 	class Meta:
 		verbose_name = "统计数据类别列表"
 		verbose_name_plural = "统计数据类别列表"
-	
+
 	def __unicode__(self):
 		return self.get_staticstype_display()
 
@@ -177,7 +177,7 @@ class StaticsDataTypeDict(models.Model):
         verbose_name = "统计数据级别列表"
         verbose_name_plural = "统计数据级别列表"
 
-    def __unicode__(self):            
+    def __unicode__(self):
         return self.get_staticsdatatype_display()
 
 class UserIdentity(models.Model):
@@ -208,7 +208,7 @@ class ExpertReview(models.Model):
         return self.get_category_display()
 
 class ExpertFinalReview(models.Model):
-    
+
     category = models.CharField(max_length=30, blank=False, unique=True,
                                 choices=EXPERT_FINAL_REVIEW_TABLE_CHOICES,
                                 verbose_name="专家评审终审表")
@@ -218,7 +218,7 @@ class ExpertFinalReview(models.Model):
     def __unicode__(self):
         return self.get_category_display()
 
-        
+
 class ProfileIdenty(models.Model):
     """
     Subject
@@ -231,3 +231,21 @@ class ProfileIdenty(models.Model):
         verbose_name_plural = "账户身份"
     def __unicode__(self):
         return self.get_category_display()
+
+class UserTrans(models.Model):
+    """
+    For CAS transform
+    """
+    id_number = models.CharField(max_length=30, blank=False, unique=True,
+                                 verbose_name="身份证号")
+    name = models.CharField(max_length=30, blank=False, unique=True,
+                                 verbose_name="用户姓名")
+    work_number = models.CharField(max_length=30, blank=False, unique=True,
+                                  verbose_name="职工号")
+    remark = models.CharField(max_length=100, blank=True, unique=True,
+                                  verbose_name="备注")
+    class Meta:
+        verbose_name = "用户身份转换表"
+        verbose_name_plural = "用户身份转换表"
+    def __unicode__(self):
+        return self.get_name_display()
