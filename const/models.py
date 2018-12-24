@@ -236,7 +236,7 @@ class UserTrans(models.Model):
     """
     For CAS transform
     """
-    id_number = models.CharField(max_length=30, blank=False, unique=True,
+    id_number = models.CharField(max_length=30, blank=False, unique=False,
                                  verbose_name="身份证号")
     name = models.CharField(max_length=30, blank=False, unique=False,
                                  verbose_name="用户姓名")
