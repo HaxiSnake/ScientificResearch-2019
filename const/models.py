@@ -238,7 +238,7 @@ class UserTrans(models.Model):
     """
     id_number = models.CharField(max_length=30, blank=False, unique=True,
                                  verbose_name="身份证号")
-    name = models.CharField(max_length=30, blank=False, unique=True,
+    name = models.CharField(max_length=30, blank=False, unique=False,
                                  verbose_name="用户姓名")
     work_number = models.CharField(max_length=30, blank=False, unique=True,
                                   verbose_name="职工号")
