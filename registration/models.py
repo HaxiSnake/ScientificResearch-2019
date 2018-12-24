@@ -69,7 +69,9 @@ class RegistrationManager(models.Manager):
             registration_profile = self.create_profile(new_user)
             registration_profile.save()
             current_site = Site.objects.get_current()
-            site_domain =current_site.domain
+            # site_domain =current_site.domain
+            # change the domain as the network reason
+            site_domain = '10.8.128.203:9006'
 
             if send_email:
                 from django.core.mail import send_mail
@@ -92,6 +94,7 @@ class RegistrationManager(models.Manager):
                                            message,
                                            settings.DEFAULT_FROM_EMAIL,
                                            [new_user.email])
+                print(send_mail_flag)
         else:
             new_user = User.objects.get(username=username)
         #对用户权限写入数据库

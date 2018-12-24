@@ -294,11 +294,12 @@ def Dispatch(request,form,identity,page,search_form):
         email = dispatchForm.cleaned_data["email"].strip()
         person_name = dispatchForm.cleaned_data["person_firstname"].strip()
         if request.session.get('auth_role', "") in (COLLEGE_USER):
-            error = checkIdcard(username)
-            if error[0]!=0:
-                loginfo(error[1])
-                message= error[1]
-                return simplejson.dumps({'field':dispatchForm.data.keys(),'error_id':dispatchForm.errors.keys(),'message':message})
+            pass
+            #error = checkIdcard(username)
+            #if error[0]!=0:
+            #    loginfo(error[1])
+            #    message= error[1]
+            #    return simplejson.dumps({'field':dispatchForm.data.keys(),'error_id':dispatchForm.errors.keys(),'message':message})
         if password == "":
             password = username[-6:]
         if identity == SCHOOL_USER or identity ==COLLEGE_USER:
