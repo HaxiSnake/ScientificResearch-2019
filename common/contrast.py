@@ -14,8 +14,8 @@ sys.setdefaultencoding('utf8')
 #
 
 def get_id_and_name(work_num):
-    user = UserTrans.objects.get(work_number = work_num)
-    if user:
+    try:
+        user = UserTrans.objects.get(work_number = work_num)
         return user.id_number
-    else:
+    except User.DoesNotExist:
         return None

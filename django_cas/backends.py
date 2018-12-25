@@ -175,8 +175,7 @@ class CASBackend(object):
             if user_id:
                 user = User.objects.get(username=user_id)
             else:
-                print(username)
-                user = User.objects.get(username=str(username))
+                user = User.objects.get(username=username)
         except User.DoesNotExist:
             # user will have an "unusable" password
             return None
