@@ -1,6 +1,7 @@
 import pandas as pd
 import sys
 from const.models import UserTrans
+from django_cas.models import User
 reload(sys)
 sys.setdefaultencoding('utf8')
 
