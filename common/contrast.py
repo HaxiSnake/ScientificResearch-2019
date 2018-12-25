@@ -18,5 +18,5 @@ def get_id_and_name(work_num):
     try:
         user = UserTrans.objects.get(work_number = work_num)
         return user.id_number
-    except User.DoesNotExist:
+    except UserTrans.DoesNotExist:
         return None
