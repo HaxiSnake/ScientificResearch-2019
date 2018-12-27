@@ -21,6 +21,7 @@ RegisterClass = (
     NationalTradeCode,
     Subject,
     ExpertFinalReview,
+    UserTrans
 )
 
 for temp in RegisterClass:
