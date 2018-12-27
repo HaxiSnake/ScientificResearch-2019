@@ -36,8 +36,8 @@ for temp in RegisterClass:
     admin.site.register(temp)
 
 class ProjectSingleAdmin(admin.ModelAdmin):
-    list_display = ['project_code','title','teacher','project_status'] 
-    search_fields = ['project_code','title','teacher','project_status']
+    list_display = ('project_code','title','teacher','project_status')
+    search_fields = ('project_code','title','teacher','project_status')
 
 RegisterSearchClass = (
     (ProjectSingle,ProjectSingleAdmin),
