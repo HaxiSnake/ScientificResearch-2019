@@ -21,8 +21,13 @@ RegisterClass = (
     NationalTradeCode,
     Subject,
     ExpertFinalReview,
-    UserTrans,
 )
 
 for temp in RegisterClass:
     admin.site.register(temp)
+
+class UserTransAdmin(admin.ModelAdmin):
+    list_display = ('id_number','name','work_number')
+    search_fields = ('id_number','name','work_number')
+
+admin.site.register(UserTrans)
