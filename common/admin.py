@@ -20,8 +20,8 @@ for temp in RegisterClass:
 
 class ProjectMemberAdmin(admin.ModelAdmin):
     list_display = ('project','name','card')
-    search_fields = ('project','name','card')
-    
+    search_fields = ('name','card')
+
 RegisterSearchClass = (
     (ProjectMember,ProjectMemberAdmin),
 )

@@ -37,7 +37,7 @@ for temp in RegisterClass:
 
 class ProjectSingleAdmin(admin.ModelAdmin):
     list_display = ('project_code','title','teacher','project_status')
-    search_fields = ('project_code','title','teacher','project_status')
+    search_fields = ('project_code','title')
 
 RegisterSearchClass = (
     (ProjectSingle,ProjectSingleAdmin),
