@@ -248,4 +248,4 @@ class UserTrans(models.Model):
         verbose_name = "用户身份转换表"
         verbose_name_plural = "用户身份转换表"
     def __unicode__(self):
-        return self.get_work_number_display()
+        return self.name
