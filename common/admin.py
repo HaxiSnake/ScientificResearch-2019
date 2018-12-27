@@ -19,7 +19,8 @@ for temp in RegisterClass:
     admin.site.register(temp)
 
 class ProjectMemberAdmin(admin.ModelAdmin):
-    search_fields = ['name','card']
+    list_display = ('project','name','card')
+    search_fields = ['project','name','card']
 
 RegisterSearchClass = (
     (ProjectMember,ProjectMemberAdmin),
