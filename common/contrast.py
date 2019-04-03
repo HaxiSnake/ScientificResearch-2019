@@ -1,4 +1,4 @@
-import pandas as pd
+# import pandas as pd
 import sys
 from const.models import UserTrans
 from django_cas.models import User

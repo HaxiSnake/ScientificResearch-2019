@@ -81,7 +81,7 @@ urlpatterns = patterns('',
     url(r'^login/$', 'django_cas.views.login'),
 )
 
-urlpatterns += patterns('', url(r'tinymce/', include('tinymce.urls')),)
+# urlpatterns += patterns('', url(r'tinymce/', include('tinymce.urls')),)
 urlpatterns += patterns('', url(dajaxice_config.dajaxice_url, include('dajaxice.urls')),)
 urlpatterns += staticfiles_urlpatterns()
 

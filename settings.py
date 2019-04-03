@@ -153,7 +153,7 @@ INSTALLED_APPS = (
     'south',
     'dajaxice',
     'dajax',
-    'chartit',
+    'chartit'
 )
 
 print 'dddd'
